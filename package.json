@@ -1,0 +1,11 @@
+{
+  "name": "Plantsy_App",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Plantsy-Dream-Team/Plantsy_App.git",
+  "author": "Dally Wally <dallin.watac.major@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "react-router-dom": "^4.3.1"
+  }
+}
