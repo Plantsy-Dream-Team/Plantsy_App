@@ -5,7 +5,7 @@ var CommentsSchema = new Schema({
 
     comment: String,
 
-    commentCreated: {
+    date: {
         type: Date,
         default: Date.now
     }

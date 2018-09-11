@@ -19,7 +19,7 @@ var PlantSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Comment'
     },
-    userCreated: {
+    date: {
         type: Date,
         default: Date.now
     }

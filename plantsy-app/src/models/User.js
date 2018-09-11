@@ -5,6 +5,9 @@ var UserSchema = new Schema({
     username: {
         type: String,
         trim: true,
+        index: {
+            unique: true
+        },
         required: "Username is Required"
     },
     password: {
@@ -18,12 +21,23 @@ var UserSchema = new Schema({
             "Password should be longer."
         ]
     },
+    firstname: {
+        type: String,
+        trim: true
+    },
+
+    lastname: {
+        type: String,
+        trim: true
+    },
+
     plants: [
         {
             type: Schema.Types.ObjectId,
             ref: "Plant"
         }
     ],
+
     profile_picture: {
         type: Schema.Types.ObjectId,
         ref: 'uploads'
