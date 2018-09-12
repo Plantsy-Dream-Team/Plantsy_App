@@ -6,7 +6,7 @@ const imageRoutes = require('./images');
 
 router.use('/user', userRoutes);
 // router.use('/plants', plantRoutes);
-// router.use('/comments', commentsRoutes);
+router.use('/comments', commentsRoutes);
 router.use('/images', imageRoutes);
 
 module.exports = router;

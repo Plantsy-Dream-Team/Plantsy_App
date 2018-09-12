@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const upload = require('../../gridfs').uploads;
 
-router.post('/upload', upload.single('file'), (req, res) => {
+router.post('/', upload.single('file'), (req, res) => {
    res.json({file: req.file});
 });
 
