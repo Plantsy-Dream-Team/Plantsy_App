@@ -5,12 +5,14 @@ const userController = require('../../controllers/userController');
 router.route('/')
     .post(userController.validateUser);
 
-// api/register
+// api/user/register
 router.route("/register")
     .post(userController.create);
 
-// api/:id
+// api/user/:id
 router.route(":id")
     .get(userController.findById)
     .put(userController.update)
     .delete(userController.remove);
+
+module.exports = router;

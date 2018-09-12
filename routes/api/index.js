@@ -4,4 +4,9 @@ const plantRoutes = require('./plants');
 const commentsRoutes = require('./comments');
 const imageRoutes = require('./images');
 
-router.use()
+router.use('/user', userRoutes);
+// router.use('/plants', plantRoutes);
+// router.use('/comments', commentsRoutes);
+router.use('/images', imageRoutes);
+
+module.exports = router;
