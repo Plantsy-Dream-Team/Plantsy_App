@@ -1,12 +1,30 @@
-const mongoose = require('mongoose');
-const Grid = require('gridfs-stream');
-const plantsydb = require('../connections');
+const GridFsStorage = require('multer-gridfs-storage');
+const multer = require('multer');
+const crypto = require('crypto');
+const path = require('path');
+const mongoURI = require('../connections').mongoURI;
 
-let gfs;
 
-plantsydb.conn.once('open', () => {
-    gfs = Grid(plantsydb.conn.db, mongoose.mongo);
-    grs.collection('uploads');
+
+const storage = new GridFsStorage({
+    url: mongoURI,
+    file: (req, file) => {
+        return new Promise((resolve, reject) => {
+            crypto.randomBytes(16, (err, buf) => {
+                if (err) {
+                    return reject(err);
+                }
+                const filename = buf.toString('hex') + path.extname(file.originalname);
+                const fileInfo = {
+                    filename: filename,
+                    bucketName: 'uploads'
+                };
+                resolve(fileInfo);
+            });
+        });
+    }
 });
 
-module.exports = gfs;
+const upload = multer({ storage });
+
+module.exports = upload;
