@@ -10,11 +10,6 @@ app.use(bodyParser.json({ useNewUrlParser: true }));
 app.use(methodOverride("_method"));
 app.use(router);
 
-app.get('/test/hello', (req, res) => {
-    res.send({ express: 'Hello From Express' });
-  });
-
-
 const port = 3001;
 
 app.listen(port, () => console.log(`server started on port ${port}`));

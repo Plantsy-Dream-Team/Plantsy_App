@@ -6,6 +6,7 @@
     "start": "node server.js",
    "client": "cd client && yarn start",
     "server": "nodemon server.js",
+    "seed": "node scripts/seeds.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "repository": "https://github.com/Plantsy-Dream-Team/Plantsy_App.git",
