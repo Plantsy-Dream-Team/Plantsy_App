@@ -1,7 +1,8 @@
 {
-  "name": "plantsy-app",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001/",
   "dependencies": {
     "mongoose": "^5.2.14",
     "react": "^16.5.0",

@@ -19,10 +19,10 @@ var PlantSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Comment'
     },
-    date: {
-        type: Date,
-        default: Date.now
-    }
+    // date: {
+    //     type: Date,
+    //     default: Date.now
+    // }
 });
 
 var Plant = mongoose.model("Plant", PlantSchema);

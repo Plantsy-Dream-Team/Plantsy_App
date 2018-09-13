@@ -47,10 +47,10 @@ var UserSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'uploads'
     },
-    userCreated: {
-        type: Date,
-        default: Date.now
-    }
+    // date: {
+    //     type: Date,
+    //     default: Date.now
+    // }
 });
 
 var User = mongoose.model("User", UserSchema);
