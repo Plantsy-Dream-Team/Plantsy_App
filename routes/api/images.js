@@ -1,16 +1,15 @@
-const express = require("express").Router();
-const gridFS = require('../gridfs');
+const router = require("express").Router();
+const gridFS = require('../../gridfs');
 const mongoose = require('mongoose');
 
-app = express();
 
 const { gfs, upload } = gridFS;
 
-app.post('/upload', upload.single('image'), (req, res) => {
+router.post('/upload', upload.single('image'), (req, res) => {
    res.json({file: req.file});
 });
 
-app.get('/image/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     gfs.files.findOne({ '_id': ObjectId(req.params.id) }, (err, file) => {
         if (!file || file.length === 0) {
             return res.status(404).json({
@@ -29,7 +28,7 @@ app.get('/image/:id', (req, res) => {
     });
 });
 
-app.delete('image/delete/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     gfs.remove({'_id': ObjectId(req.params.id), root: 'uploads'}, (err, gfsStore) => {
         if(err) {
             return res.status(404).json({err: err});
