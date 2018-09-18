@@ -1,16 +1,31 @@
 const router = require("express").Router();
-const gridFS = require('../../gridfs');
+const upload = require('../../gridfs').upload;
 const mongoose = require('mongoose');
+const Grid = require('gridfs-stream');
+const conn = require('../../connections').conn;
 
+let gfs;
 
-const { gfs, upload } = gridFS;
+conn.once('open', () => {
+    gfs = Grid(conn.db, mongoose.mongo);
+    gfs.collection('uploads');
+
+});
+
 
 router.post('/upload', upload.single('image'), (req, res) => {
    res.json({file: req.file});
 });
 
-router.get('/:id', (req, res) => {
-    gfs.files.findOne({ '_id': ObjectId(req.params.id) }, (err, file) => {
+router.get('/all', (req, res) => {
+
+    gfs.files.find().toArray((err, files) => {
+        res.json(files);
+    });
+})
+
+router.get('/:filename', (req, res) => {
+    gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
         if (!file || file.length === 0) {
             return res.status(404).json({
                 err: 'No files exist'

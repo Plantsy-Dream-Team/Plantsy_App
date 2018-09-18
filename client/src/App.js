@@ -1,33 +1,33 @@
 import React, { Component } from 'react';
 import Image from './components/Image';
-import API from './utils/API';
+import API from './utils';
 
 class App extends Component {
-    state = {
-        images: ['5b995cd7abe241d4953c8561','5b995d46abe241d4953c8563','5b9d2efaaa84bc21721e6dea']
-      };
+    constructor(props) {
+        super(props);
+        this.state = {
+            images: []
+        };
+    }
     
-      componentDidMount() {
-          
-      }
-      getImage(id) {
-          return API.getImage(id);
-      }
-    
-      callApi = async () => {
-        const response = await fetch('/test/hello');
-        const body = await response.json();
-    
-        if (response.status !== 200) throw Error(body.message);
-    
-        return body;
-      };
+    async componentDidMount() {
+        await this.setState({
+            images: ['3077b19fe8c78a7708b255b62ef3dbb9.jpeg', 'c1cebf628406c2b34eed7bea9a827ba3.jpg', 'fb31f0a7a08215ea26cb1e4c7b9fa8c1.png']
+        });
+    }
+
+    getImages(filenames) {
+        console.log(filenames);
+        API.getImages(filenames)
+            .then(res => this.setState({ images: res }))
+            .catch(err => console.log(err));
+    }
 
     render() {
         return (
             <div>
-                {this.state.images.map(id => (
-                    <Image image={this.getImage(id)} />
+                {this.state.images.map(file => (
+                    <Image image={file} />
                 ))}
             </div>
         );

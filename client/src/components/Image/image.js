@@ -1,7 +1,10 @@
-import react from 'react';
+import React from "react";
+import './image.css';
 
 const image = props => (
-    <image src={props.image} alt='plant'/>
-)
+    <img src={'api/images/' + props.image} alt='plant'/>
+);
 
 export default image;
+        
+    

@@ -1,4 +1,4 @@
 module.exports = {
-    gfs: require('./gfs'),
+    // gfs: require('./gfs'),
     upload: require('./uploads')
 };
