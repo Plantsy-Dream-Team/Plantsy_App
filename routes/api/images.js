@@ -43,8 +43,8 @@ router.get('/:filename', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
-    gfs.remove({'_id': ObjectId(req.params.id), root: 'uploads'}, (err, gfsStore) => {
+router.delete('/:filename', (req, res) => {
+    gfs.remove({filename: req.params.filename, root: 'uploads'}, (err, gfsStore) => {
         if(err) {
             return res.status(404).json({err: err});
         }

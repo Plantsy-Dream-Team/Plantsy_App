@@ -9,7 +9,7 @@ var PlantSchema = new Schema({
         required: "Username is Required"
     },
     image: {
-        type: Schema.Types.ObjectId,
+        type:  String,
         ref: 'uploads'
     },
     description: {
@@ -19,10 +19,10 @@ var PlantSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Comment'
     },
-    // date: {
-    //     type: Date,
-    //     default: Date.now
-    // }
+    date: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 var Plant = mongoose.model("Plant", PlantSchema);
