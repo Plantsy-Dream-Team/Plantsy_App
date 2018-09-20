@@ -10,8 +10,10 @@ router.route("/register")
     .post(userController.create);
 
 // api/user/:id
-router.route(":id")
-    .get(userController.findById)
+router.route("/hi")
+    .get((req, res) => {
+        res.json({hello: 'hi'})
+    })
     .put(userController.update)
     .delete(userController.remove);
 

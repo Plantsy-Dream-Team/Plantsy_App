@@ -31,21 +31,14 @@ var UserSchema = new Schema({
         trim: true
     },
 
-    plants: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: "Plant"
-        }
-    ],
+    plants: [String],
 
     profile_picture: {
-        type: Schema.Types.ObjectId,
-        ref: 'uploads'
+        type: String
     },
 
     cover_photo: {
-        type: Schema.Types.ObjectId,
-        ref: 'uploads'
+        type: String
     },
     // date: {
     //     type: Date,
