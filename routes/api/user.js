@@ -3,15 +3,16 @@ const userController = require('../../controllers/userController');
 
 // api/user/
 router.route('/')
-    .post(userController.validateUser);
+    .post(userController.validateUser)
+    .get(userController.findAll);
 
 // api/user/register
 router.route("/register")
     .post(userController.create);
 
 // api/user/:id
-router.route(":id")
-    .get(userController.findById)
+router.route(":username")
+    .get(userController.findUser)
     .put(userController.update)
     .delete(userController.remove);
 

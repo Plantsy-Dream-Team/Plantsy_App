@@ -1,22 +1,30 @@
 import React, { Component } from 'react';
-import Image from './components/Image';
+// import Image from './components/Image';
 import API from './utils';
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            images: []
+            username: "dallinmajor"
         };
     }
 
     async componentDidMount() {
-        this.getImages();
+        // this.getImages();
+        this.getUser()
     }
 
     getImages() {
-        API.getAll()
-            .then(res => this.setState({ images: res.data }))
+        API.getUserPlants(this.state.props)
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+            // this.setState({ images: res.data })
+    }
+
+    getUser() {
+        API.getUserPlants(this.state.username)
+            .then(res => console.log(res))
             .catch(err => console.log(err));
     }
 
@@ -24,13 +32,13 @@ class App extends Component {
         return (
             <div>
                 <div className="container">
-                    {this.state.images.map(file => (
-                        <Image key={file.filename} image={file.filename} />
-                    ))}
+
                 </div>
             </div>
         );
     }
 };
-
+// {this.state.images.map(file => (
+//     <Image key={file.filename} image={file.filename} />
+// ))}
 export default App;
