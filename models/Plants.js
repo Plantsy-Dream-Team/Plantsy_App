@@ -15,10 +15,10 @@ var PlantSchema = new Schema({
     description: {
         type: String,
     },
-    comments: {
+    comments: [{
         type: Schema.Types.ObjectId,
         ref: 'Comment'
-    },
+    }],
     date: {
         type: Date,
         default: Date.now

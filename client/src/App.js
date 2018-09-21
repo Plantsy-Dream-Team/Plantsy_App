@@ -16,14 +16,14 @@ class App extends Component {
     }
 
     getImages() {
-        API.getUserPlants(this.state.props)
+        API.getUser(this.state.props)
             .then(res => console.log(res))
             .catch(err => console.log(err));
             // this.setState({ images: res.data })
     }
 
     getUser() {
-        API.getUserPlants(this.state.username)
+        API.getUser(this.state.username)
             .then(res => console.log(res))
             .catch(err => console.log(err));
     }

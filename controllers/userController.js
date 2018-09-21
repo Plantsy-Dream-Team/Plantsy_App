@@ -9,10 +9,15 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     findUser: function(req, res) {
-        console.log('this ran');
+        console.log(req.params.username);
         db.User
             .findOne({"username": req.params.username})
-            .populate('plants')
+            .populate({
+                path: 'plants',
+                populate: {
+                    path: 'plants.comment',
+                }
+            })
             .exec((err, plants) => res.json(plants));
             
     },

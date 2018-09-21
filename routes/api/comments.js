@@ -1,7 +1,8 @@
 const router = require("express").Router();
+const commentsController = require('../../controllers/commentsController');
 
-router.get('/', (req, res) => {
-    res.send({express: 'hi'});
-});
+// /api/comments/all
+router.route('/all')
+    .get(commentsController.findAll);
 
 module.exports = router;

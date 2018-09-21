@@ -6,7 +6,8 @@ const mongoose = require('mongoose');
 
 mongoose.connect(
     process.env.MONGODB_URI ||
-    "mongodb://plantsy:Pin4Plantsy@ds151382.mlab.com:51382/plantsy"
+    "mongodb://plantsy:Pin4Plantsy@ds151382.mlab.com:51382/plantsy",
+    { useNewUrlParser: true }
 );
 
 const app = express();
