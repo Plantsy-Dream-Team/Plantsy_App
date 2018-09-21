@@ -39,18 +39,18 @@ var UserSchema = new Schema({
     ],
 
     profile_picture: {
-        type: Schema.Types.ObjectId,
+        type: String,
         ref: 'uploads'
     },
 
     cover_photo: {
-        type: Schema.Types.ObjectId,
+        type: String,
         ref: 'uploads'
     },
-    // date: {
-    //     type: Date,
-    //     default: Date.now
-    // }
+    date: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 var User = mongoose.model("User", UserSchema);

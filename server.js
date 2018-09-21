@@ -2,8 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const router = require('./routes');
+const mongoose = require('mongoose');
 
-
+mongoose.connect(
+    process.env.MONGODB_URI ||
+    "mongodb://plantsy:Pin4Plantsy@ds151382.mlab.com:51382/plantsy"
+);
 
 const app = express();
 
