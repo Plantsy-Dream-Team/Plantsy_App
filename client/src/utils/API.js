@@ -5,4 +5,9 @@ export default {
         console.log(username);
         return axios.get('api/user/' + username);
     },
+    addComment: (comment, plantId) => {
+        return axios.post('api/comments/' + plantId, {
+            comment: comment
+        }).then();
+    }
 };

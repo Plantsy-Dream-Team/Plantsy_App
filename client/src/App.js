@@ -19,6 +19,7 @@ class App extends Component {
 
     async componentDidMount() {
         this.getUser()
+        this.addComment();
     }
 
     getUser() {
@@ -32,6 +33,11 @@ class App extends Component {
                 cover_photo: user.data.cover_photo
             }))
             .catch(err => console.log(err));
+    }
+    
+    addComment() {
+        API.addComment('Ok this could be really cool if it can work!!!','5ba48dc67abb61befb1a550f')
+            .then(plant => console.log(plant));
     }
 
     render() {

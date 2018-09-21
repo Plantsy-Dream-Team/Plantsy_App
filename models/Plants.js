@@ -16,7 +16,7 @@ var PlantSchema = new Schema({
         type: String,
     },
     comments: [{
-        type: Schema.Types.ObjectId,
+        type: String,
         ref: 'Comment'
     }],
     date: {

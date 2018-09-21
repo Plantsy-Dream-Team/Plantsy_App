@@ -3,11 +3,11 @@ const db = require('../models');
 module.exports = {
   findAll: function (req, res) {
     db.Comments
-        .find(req.query)
-        .sort({ date: -1 })
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err));
-},
+      .find(req.query)
+      .sort({ date: -1 })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   findById: function (req, res) {
     db.Comments
       .findById(req.params.id)
@@ -17,7 +17,16 @@ module.exports = {
   create: function (req, res) {
     db.Comments
       .create(req.body)
-      .then(dbModel => res.json(dbModel))
+      .then(comment => {
+        
+        console.log(JSON.stringify(comment));
+        db.Plant.updateOne({
+          _id: req.params.plantId
+        },
+          { $push: { comments: comment._id }, })
+          .populate({ path: 'comments', model: 'Comment' })
+          .then(plant => res.json(plant));
+      })
       .catch(err => res.status(422).json(err));
   },
   update: function (req, res) {

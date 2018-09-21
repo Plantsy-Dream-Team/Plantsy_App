@@ -5,4 +5,7 @@ const commentsController = require('../../controllers/commentsController');
 router.route('/all')
     .get(commentsController.findAll);
 
+router.route('/:plantId')
+    .post(commentsController.create);
+
 module.exports = router;
