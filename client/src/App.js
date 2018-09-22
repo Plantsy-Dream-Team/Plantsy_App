@@ -22,7 +22,7 @@ class App extends Component {
     }
 
     getUser() {
-        API.getUser(this.state.username)
+        API.User.findByUsername(this.state.username)
             .then(user => this.setState({
                 firstname: user.data.firstname,
                 lastname: user.data.lastname,
@@ -35,8 +35,8 @@ class App extends Component {
     }
     
     addComment() {
-        API.addComment('Ok this could be really cool if it can work!!!','5ba48dc67abb61befb1a550f')
-            .then(plant => console.log(plant));
+        // API.addComment('Ok this could be really cool if it can work!!!','5ba48dc67abb61befb1a550f')
+        //     .then(plant => console.log(plant));
     }
 
     render() {
@@ -46,6 +46,7 @@ class App extends Component {
                     {this.state.plants.map(plant => (
                         <PlantCard 
                             key={plant._id}
+                            id={plant._id}
                             name={plant.name} 
                             image={plant.image}
                             description={plant.description}
@@ -57,7 +58,5 @@ class App extends Component {
         );
     }
 };
-// {this.state.images.map(file => (
-//     <Image key={file.filename} image={file.filename} />
-// ))}
+
 export default App;

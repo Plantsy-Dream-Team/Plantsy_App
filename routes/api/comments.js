@@ -5,9 +5,11 @@ const commentsController = require('../../controllers/commentsController');
 router.route('/all')
     .get(commentsController.findAll);
 
+router.route('/:plantId')
+    .post(commentsController.create)
+
 // /api/comments/:plantId
 router.route('/:id')
-    .post(commentsController.create)
     .delete(commentsController.remove)
     .put(commentsController.update)
     .get(commentsController.findById);
@@ -17,6 +19,6 @@ router.route('/:commentId/:plantId')
     .delete(commentsController.removeFromPlant);
 
 
-    
+
 
 module.exports = router;
