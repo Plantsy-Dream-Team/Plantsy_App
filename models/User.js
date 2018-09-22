@@ -2,6 +2,11 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
+    status: {
+        type: String,
+        default: 'active'
+    },
+    
     username: {
         type: String,
         trim: true,

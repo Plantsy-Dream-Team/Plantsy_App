@@ -16,12 +16,9 @@ module.exports = {
                 populate: {
                     path: 'comments',
                     model: 'Comment',
-                    path: 'image',
-                    model: 'upload'
                 }
             })
-            .exec((err, plants) => res.json(plants));
-            
+            .then(user => res.json(user));
     },
     validateUser: function (req, res) {
         db.User
@@ -43,7 +40,7 @@ module.exports = {
     },
     remove: function (req, res) {
         db.User
-            .findById({"username": req.params.username})
+            .findOne({"username": req.params.username})
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));

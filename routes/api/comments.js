@@ -6,15 +6,17 @@ router.route('/all')
     .get(commentsController.findAll);
 
 // /api/comments/:plantId
-router.route('/:plantId')
-    .post(commentsController.create);
-
-// /api/comments/:plantId/commentId
-router.route('/:plantId/commentId')
-    .delete(commentsController.remove);
-
-// /api/comments/:id
 router.route('/:id')
-    .put(commentsController.update);
+    .post(commentsController.create)
+    .delete(commentsController.remove)
+    .put(commentsController.update)
+    .get(commentsController.findById);
+
+// /api/comments/commentId/plantId delete comment from db and plant    
+router.route('/:commentId/:plantId')
+    .delete(commentsController.removeFromPlant);
+
+
+    
 
 module.exports = router;
