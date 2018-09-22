@@ -13,11 +13,35 @@ conn.once('open', () => {
 
 });
 
+//ROUTES for Images
 
 router.post('/plant/:plantId', upload.single('image'), (req, res) => {
     console.log(req.file.filename);
     db.Plant
-        .findByIdAndUpdate({_id: req.params.plantId}, {image: req.file.filename})
+        .findByIdAndUpdate({ _id: req.params.plantId }, { image: req.file.filename })
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
+});
+
+
+
+//ROUTES for User Profile_Picture
+
+router.post('/profilePicture/:username', upload.single('image'), (req, res) => {
+    //Update user profile_picture. if there is one there replace it
+    db.User
+        .findByIdAndUpdate({ username: req.params.username }, { profile_picture: req.file.filename })
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
+});
+
+
+//ROUTES for User Cover Photo
+
+router.post('/coverPhoto/:username', upload.single('image'), (req, res) => {
+    //Update user profile_picture. if there is one there replace it
+    db.User
+        .findByIdAndUpdate({ username: req.params.username }, { coverPhoto: req.file.filename })
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
 });
@@ -48,12 +72,12 @@ router.get('/:filename', (req, res) => {
     });
 });
 
-router.delete('plant/:filename/:plantId', (req, res) => {
+router.delete('/plant/:filename', (req, res) => {
     gfs.remove({ filename: req.params.filename, root: 'uploads' }, (err, gfsStore) => {
         if (err) {
             return res.status(404).json({ err: err });
         }
-        res.send(gfsStore);
+        res.send('deleted!');
     })
 });
 

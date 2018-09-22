@@ -20,7 +20,14 @@ module.exports = {
   create: function (req, res) {
     db.Plant
       .create(req.body)
-      .then(dbModel => res.json(dbModel))
+      .then(dbModel => {
+        db.User
+          .updateOne({
+            username: req.params.username
+          }, {
+            $push: {plants: dbModel._id}
+          })
+      })
       .catch(err => res.status(422).json(err));
   },
   update: function (req, res) {
@@ -30,11 +37,20 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
   remove: function (req, res) {
     db.Plant
-      .findById({ _id: req.params.id })
+      .findById({ _id: req.params.plantId })
       .then(dbModel => dbModel.remove())
-      .then(dbModel => res.json(dbModel))
+      .then(() => {
+        db.User
+          .updateOne({
+            username: req.params.username
+          }, {
+            $pull: {plants: req.params.plantId}
+          })
+      })
+
       .catch(err => res.status(422).json(err));
   }
 };

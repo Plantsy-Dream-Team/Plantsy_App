@@ -36,9 +36,17 @@ module.exports = {
   },
   remove: function (req, res) {
     db.Comments
-      .findById({ _id: req.params.id })
+      .findById({ _id: req.params.commentId })
       .then(dbModel => dbModel.remove())
-      .then(dbModel => res.json(dbModel))
+      .then(()=> {
+        db.Plant
+          .updateOne({
+            _id: req.params.plantId
+          }, {
+            $pull: {comments: req.params.commentId}
+          })
+      })
+      .then(() => res.send('comment deleted!'))
       .catch(err => res.status(422).json(err));
   }
 };
