@@ -1,5 +1,10 @@
 import axios from 'axios'
 
+//GET ALL USERS
+    //In your brower address bar thing put
+        //localhost:3001/api/user
+//OUTPUT JSON DATA
+
 export default {
 
     //Input User Object look to Model to know what it needs

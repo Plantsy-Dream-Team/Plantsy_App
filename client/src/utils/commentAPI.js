@@ -1,5 +1,10 @@
 import axios from 'axios'
 
+//GET ALL COMMENTS
+    //In your brower address bar thing put
+        //localhost:3001/api/coments/all
+//OUTPUT JSON DATA
+
 export default {
     //Input plantId of the plant to which the comment will belong
         //and the comment object
