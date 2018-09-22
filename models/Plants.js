@@ -6,23 +6,26 @@ var PlantSchema = new Schema({
     name: {
         type: String,
         trim: true,
-        required: "Username is Required"
     },
     image: {
-        type: Schema.Types.ObjectId,
+        type:  String,
         ref: 'uploads'
     },
     description: {
         type: String,
     },
-    comments: {
-        type: Schema.Types.ObjectId,
-        ref: 'Comment'
+    health: {
+        type: String,
+        default: "thriving"
     },
-    // date: {
-    //     type: Date,
-    //     default: Date.now
-    // }
+    comments: [{
+        type: String,
+        ref: 'Comment'
+    }],
+    date: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 var Plant = mongoose.model("Plant", PlantSchema);

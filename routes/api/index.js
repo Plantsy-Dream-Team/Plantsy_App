@@ -5,7 +5,7 @@ const commentsRoutes = require('./comments');
 const imageRoutes = require('./images');
 
 router.use('/user', userRoutes);
-// router.use('/plants', plantRoutes);
+router.use('/plant', plantRoutes);
 router.use('/comments', commentsRoutes);
 router.use('/images', imageRoutes);
 

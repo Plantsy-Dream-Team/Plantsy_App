@@ -3,6 +3,7 @@ const upload = require('../../gridfs').upload;
 const mongoose = require('mongoose');
 const Grid = require('gridfs-stream');
 const conn = require('../../connections').conn;
+const db = require('../../models');
 
 let gfs;
 
@@ -12,9 +13,37 @@ conn.once('open', () => {
 
 });
 
+//ROUTES for Images
 
-router.post('/upload', upload.single('image'), (req, res) => {
-   res.json({file: req.file});
+router.post('/plant/:plantId', upload.single('image'), (req, res) => {
+    console.log(req.file.filename);
+    db.Plant
+        .updateOne({ _id: req.params.plantId }, { image: req.file.filename })
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
+});
+
+
+
+//ROUTES for User Profile_Picture
+
+router.post('/profilePicture/:username', upload.single('image'), (req, res) => {
+    //Update user profile_picture. if there is one there replace it
+    db.User
+        .updateOne({ username: req.params.username }, { profile_picture: req.file.filename })
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
+});
+
+
+//ROUTES for User Cover Photo
+
+router.post('/coverPhoto/:username', upload.single('image'), (req, res) => {
+    //Update user profile_picture. if there is one there replace it
+    db.User
+        .updateOne({ username: req.params.username }, { cover_photo: req.file.filename })
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
 });
 
 router.get('/all', (req, res) => {
@@ -43,11 +72,12 @@ router.get('/:filename', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
-    gfs.remove({'_id': ObjectId(req.params.id), root: 'uploads'}, (err, gfsStore) => {
-        if(err) {
-            return res.status(404).json({err: err});
+router.delete('/:filename', (req, res) => {
+    gfs.remove({ filename: req.params.filename, root: 'uploads' }, (err, gfsStore) => {
+        if (err) {
+            return res.status(404).json({ err: err });
         }
+        res.send('deleted!');
     })
 });
 

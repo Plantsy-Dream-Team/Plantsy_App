@@ -8,23 +8,21 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
+    findUser: function(req, res) {
+        db.User
+            .findOne({"username": req.params.username})
+            .populate({
+                path: 'plants',
+                populate: {
+                    path: 'comments',
+                    model: 'Comment',
+                }
+            })
+            .then(user => res.json(user));
+    },
     validateUser: function (req, res) {
         db.User
             .findOne(req.body)
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
-    },
-    findPlants: function (req, res) {
-        db.User
-            .findById(req.params.id)
-            .populate('Plant')
-            .then(Plants => res.json(Plants))
-            .catch(err => res.status(422).json(err));
-
-    },
-    findById: function (req, res) {
-        db.User
-            .findById(req.params.id)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
@@ -36,13 +34,13 @@ module.exports = {
     },
     update: function (req, res) {
         db.User
-            .findOneAndUpdate({ _id: req.params.id }, req.body)
+            .findOneAndUpdate({"username": req.params.username}, req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     remove: function (req, res) {
         db.User
-            .findById({ _id: req.params.id })
+            .findOne({"username": req.params.username})
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));

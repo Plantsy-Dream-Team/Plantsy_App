@@ -1,34 +1,59 @@
 import React, { Component } from 'react';
-import Image from './components/Image';
+// import Image from './components/Image';
+import PlantCard from './components/PlantCard';
 import API from './utils';
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            images: []
+            username: "dallinmajor",
+            firstname: '',
+            lastname: '',
+            plants: [],
+            id: '',
+            profile_picture: '',
+            cover_photo: ''
         };
     }
-    
+
     async componentDidMount() {
-        await this.setState({
-            images: ['3077b19fe8c78a7708b255b62ef3dbb9.jpeg', 'c1cebf628406c2b34eed7bea9a827ba3.jpg', 'fb31f0a7a08215ea26cb1e4c7b9fa8c1.png']
-        });
+        this.getUser()
     }
 
-    getImages(filenames) {
-        console.log(filenames);
-        API.getImages(filenames)
-            .then(res => this.setState({ images: res }))
+    getUser() {
+        API.User.findByUsername(this.state.username)
+            .then(user => this.setState({
+                firstname: user.data.firstname,
+                lastname: user.data.lastname,
+                plants: user.data.plants,
+                id: user.data._id,
+                profile_picture: user.data.profile_picture,
+                cover_photo: user.data.cover_photo
+            }))
             .catch(err => console.log(err));
+    }
+    
+    addComment() {
+        // API.addComment('Ok this could be really cool if it can work!!!','5ba48dc67abb61befb1a550f')
+        //     .then(plant => console.log(plant));
     }
 
     render() {
         return (
             <div>
-                {this.state.images.map(file => (
-                    <Image image={file} />
-                ))}
+                <div className="container">
+                    {this.state.plants.map(plant => (
+                        <PlantCard 
+                            key={plant._id}
+                            id={plant._id}
+                            name={plant.name} 
+                            image={plant.image}
+                            description={plant.description}
+                            comment={plant.comments[0].comment}
+                        /> 
+                    ))}
+                </div>
             </div>
         );
     }
