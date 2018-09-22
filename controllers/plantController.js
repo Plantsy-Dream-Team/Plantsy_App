@@ -4,6 +4,7 @@ module.exports = {
   findAll: function (req, res) {
     db.Plant
         .find(req.query)
+        .populate('comments')
         .sort({ date: -1 })
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
@@ -11,6 +12,8 @@ module.exports = {
   findById: function (req, res) {
     db.Plant
       .findById(req.params.id)
+      .populate('comments')
+      .sort({data: -1})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -21,6 +24,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   update: function (req, res) {
+    console.log(req.body);
     db.Plant
       .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))

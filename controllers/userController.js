@@ -15,7 +15,9 @@ module.exports = {
                 path: 'plants',
                 populate: {
                     path: 'comments',
-                    model: 'Comment'
+                    model: 'Comment',
+                    path: 'image',
+                    model: 'upload'
                 }
             })
             .exec((err, plants) => res.json(plants));

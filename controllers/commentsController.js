@@ -24,8 +24,7 @@ module.exports = {
           _id: req.params.plantId
         },
           { $push: { comments: comment._id }, })
-          .populate({ path: 'comments', model: 'Comment' })
-          .then(plant => res.json(plant));
+          .then(() => res.json(comment));
       })
       .catch(err => res.status(422).json(err));
   },

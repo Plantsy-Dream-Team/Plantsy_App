@@ -6,7 +6,6 @@ var PlantSchema = new Schema({
     name: {
         type: String,
         trim: true,
-        required: "Username is Required"
     },
     image: {
         type:  String,
@@ -14,6 +13,10 @@ var PlantSchema = new Schema({
     },
     description: {
         type: String,
+    },
+    health: {
+        type: String,
+        default: "thriving"
     },
     comments: [{
         type: String,
