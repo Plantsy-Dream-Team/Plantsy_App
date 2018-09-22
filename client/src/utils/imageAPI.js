@@ -6,7 +6,7 @@ import axios from 'axios'
 //OUTPUT JSON DATA
 
 export default {
-    //API Calls
+    //API CALLS
         //Create user's profile picture
             //api/images/profilePicture/:username
         //Create user's cover phot
