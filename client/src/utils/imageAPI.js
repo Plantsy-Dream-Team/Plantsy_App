@@ -1,5 +1,10 @@
 import axios from 'axios'
 
+//GET ALL PLANTS
+    //In your brower address bar thing put
+        //localhost:3001/api/images/all
+//OUTPUT JSON DATA
+
 export default {
     //API Calls
         //Create user's profile picture
