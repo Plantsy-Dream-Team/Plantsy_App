@@ -33,11 +33,6 @@ class App extends Component {
             }))
             .catch(err => console.log(err));
     }
-    
-    addComment() {
-        // API.addComment('Ok this could be really cool if it can work!!!','5ba48dc67abb61befb1a550f')
-        //     .then(plant => console.log(plant));
-    }
 
     render() {
         return (
@@ -51,7 +46,7 @@ class App extends Component {
                             name={plant.name} 
                             image={plant.image}
                             description={plant.description}
-                            comments={plant.comments.map(comment => comment.comment)}
+                            comments={plant.comments}
                         /> 
                     ))}
                 </div>
