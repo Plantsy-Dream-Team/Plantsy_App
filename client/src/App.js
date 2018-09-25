@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 // import Image from './components/Image';
 import PlantCard from './components/PlantCard';
 import API from './utils';
