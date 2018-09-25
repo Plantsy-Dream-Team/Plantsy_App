@@ -1,16 +1,34 @@
-import React from 'react';
+import React, { Component } from "react";
+import API from '../../utils';
 
-class Profile extends Comment {
+class Profile extends Component {
     state = {
-        user: '',
+        user: 'Hello',
         tab: 'default',
+        display_plants: [],
         plant: '',
         description: '',
         comment: ''
     }
 
-    componentDidMount() {
-        this.loadBooks();
+    async componentDidMount() {
+        this.getUser()
+    }
+
+    getUser() {
+        API.User.findByUsername('dallinmajor')
+            .then(user => {
+                
+                this.setState({
+                    user: user.data
+                })
+                console.log(this.state.user)
+            })
+            .catch(err => console.log(err));
+    }
+
+    logUser() {
+        console.log(this.user);
     }
 
     render() {
@@ -20,3 +38,5 @@ class Profile extends Comment {
         )
     }
 }
+
+export default Profile;

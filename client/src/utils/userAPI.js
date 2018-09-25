@@ -36,5 +36,12 @@ export default {
     remove: (username) => {
         return axios.delete('api/user/' + username)
             .catch(err => console.log(err));
+    },
+
+    validate: (username, password) => {
+        return axios.post('api/user', {
+            username: username,
+            password: password
+        })
     }
 };
