@@ -2,7 +2,7 @@ import axios from 'axios'
 
 //GET ALL COMMENTS
     //In your brower address bar thing put
-        //localhost:3001/api/coments/all
+        //localhost:3001/api/comments/all
 //OUTPUT JSON DATA
 
 export default {
