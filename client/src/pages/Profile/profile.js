@@ -12,7 +12,7 @@ class Profile extends Component {
         user: { plants: 'Plant' },
         tab: 'default',
         display_plants: [],
-        plant: '',
+        plant: '5bac252453d8ba2f3e9e0527',
         description: '',
         comment: ''
     }
@@ -28,10 +28,15 @@ class Profile extends Component {
                     user: user.data,
                     display_plants: user.data.plants
                 })
-                console.log(this.state.user)
-                console.log(this.state.display_plants)
             })
             .catch(err => console.log(err));
+    }
+
+    handleImgClick = event => {
+        console.log(event)
+        this.setState({
+            plant: event.value
+        })
     }
 
     handleInputChange = event => {
@@ -52,18 +57,31 @@ class Profile extends Component {
                     </h1>
                     </Jumbotron>
                     {this.state.display_plants.map(plant => (
-                        <LazyLoad height={100}>
-                            <PlantCard
-                                key={plant.id}
-                                name={plant.name}
-                                description={plant.description}
-                                comments={plant.comments}
-                            >
-                                <Image
-                                    image={plant.image}
-                                    name={plant.name}
-                                />
-                            </PlantCard>
+                        <LazyLoad height={200}>
+                            {this.state.plant === plant._id ? (
+                                <div>
+                                    <PlantCard
+                                        key={plant._id}
+                                        name={plant.name}
+                                        description={plant.description}
+                                        comments={plant.comments}
+                                    >
+                                        <Image
+                                            image={plant.image}
+                                            name={plant.name}
+                                        />
+                                    </PlantCard>
+                                </div>
+                            ) : (
+                                    <div>
+                                        <Image
+                                            click={this.handleImgClick}
+                                            id={plant._id}
+                                            image={plant.image}
+                                            name={plant.name}
+                                        />
+                                    </div>
+                                )}
                         </LazyLoad>
                     ))}
                 </div>
