@@ -16,6 +16,13 @@ app.use(bodyParser.json({ useNewUrlParser: true }));
 app.use(methodOverride("_method"));
 app.use(router);
 
+app.use(function(req,res,next) {
+    res.header('Acess-Control-Allow-Origin','*');
+    res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers','Content-Type');
+    next();
+})
+
 const port = 3001;
 
 app.listen(port, () => console.log(`server started on port ${port}`));
