@@ -45,13 +45,13 @@ class App extends Component {
                 <div className="container">
                     {this.state.plants.map(plant => (
                         <PlantCard 
-                            key={plant._id}
-                            id={plant._id}
-                            name={plant.name} 
-                            image={plant.image}
-                            description={plant.description}
-                            comment={plant.comments[0].comment}
-                        /> 
+                        key={plant._id}
+                        id={plant._id}
+                        name={plant.name} 
+                        image={plant.image}
+                        description={plant.description}
+                        comments={plant.comments.map(comment => comment.comment)}
+                    /> 
                     ))}
                 </div>
             </div>

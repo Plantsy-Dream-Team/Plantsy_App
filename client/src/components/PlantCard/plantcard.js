@@ -12,7 +12,9 @@ const PlantCard = props => (
                 <p className="card-text">{props.description}</p>
                 <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                 <br></br>
-                <p>{props.comment}</p>
+                {props.comments.map(comment => <p>{comment}</p>)}
+
+
             </div>
         </div>
     </div>

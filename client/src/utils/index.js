@@ -3,6 +3,8 @@ import Plant from './plantAPI';
 import Comments from './commentAPI';
 import Image from './imageAPI';
 
+
+
 export default {
     User: User,
     Plant: Plant,
