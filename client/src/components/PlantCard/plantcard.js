@@ -5,9 +5,9 @@ const PlantCard = props => (
     <div>
         <div className="plantCard card">
             <div className="card-body">
-                <h5 className="card-title">{props.name}</h5>
+                <h5 className="card-title text center">{props.name}</h5>
             </div>
-            <img className="cardImage card-img-bottom" src={'/api/images/' + props.image} alt={props.name}/>
+            {props.children}
             <div className="card-body">
                 <p className="card-text">{props.description}</p>
                 <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>

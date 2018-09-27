@@ -2,7 +2,7 @@ import React from "react";
 import './image.css';
 
 const image = props => (
-    <img src={'api/images/' + props.image} alt='plant'/>
+    <img className="cardImage card-img-bottom" src={'/api/images/' + props.image} alt={props.name}/>
 );
 
 export default image;
