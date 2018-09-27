@@ -6,7 +6,7 @@ var UserSchema = new Schema({
         type: String,
         default: 'active'
     },
-    
+
     username: {
         type: String,
         trim: true,
@@ -51,12 +51,8 @@ var UserSchema = new Schema({
     cover_photo: {
         type: String,
         ref: 'uploads'
-    },
-    date: {
-        type: Date,
-        default: Date.now
     }
-});
+}, { timestamps: true });
 
 var User = mongoose.model("User", UserSchema);
 

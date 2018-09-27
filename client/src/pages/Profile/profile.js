@@ -12,7 +12,7 @@ class Profile extends Component {
     }
 
     async componentDidMount() {
-        this.getUser()
+        this.getUser();
     }
 
     getUser() {
