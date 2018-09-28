@@ -12,8 +12,11 @@ class Profile extends Component {
         user: { plants: 'Plant' },
         tab: 'default',
         display_plants: [],
+        prepedPlant: '',
         plant: '5bac252453d8ba2f3e9e0527',
+        plantname: '',
         description: '',
+        health: '',
         comment: ''
     }
 
@@ -32,10 +35,51 @@ class Profile extends Component {
             .catch(err => console.log(err));
     }
 
-    handleImgClick = event => {
+    prepPlantForCreation() {
+        API.Plant.createUserPlant(this.state.user.username, {name: 'Staged'})
+            .then(result => this.setState({
+                prepedPlant: result._id
+            }))
+    }
+
+    createPlant() {
+        API.Plant.update(this.state.plant, {
+            name: this.state.plantname,
+            description: this.state.description,
+        }).then(plant => {
+            this.state.user.plants.push(plant);
+        })
+    }
+
+    changePlantHealth(event) {
+        API.Plant.update(this.state.plant, {
+            health: event.value
+        })
+    }
+
+    changeDisplayTabs(tab) {
+        const { plants } = this.state.user
+
+        this.setState({
+            display_plants: plants.filter(plant => plant.health === tab)
+        });
+    }
+
+    plantClicked(event){
         console.log(event)
         this.setState({
             plant: event.value
+        })
+    }
+
+    addComment(plantId) {
+        API.Comments.create(plantId, {
+            comment: this.state.comment
+        }).then(comment => {
+            
+            this.state.user.plants
+                .filter(plant => plantId === plant._id ).comments
+                .push(comment);
         })
     }
 
@@ -75,7 +119,7 @@ class Profile extends Component {
                             ) : (
                                     <div>
                                         <Image
-                                            click={this.handleImgClick}
+                                            click={this.handlePlantClick}
                                             id={plant._id}
                                             image={plant.image}
                                             name={plant.name}
