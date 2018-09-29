@@ -2,9 +2,9 @@ import React from "react";
 import './image.css';
 import plantAPI from "../../utils/plantAPI";
 
-const image = props => (
-    <div onClick={props.click} data-plant-id={props.id}>
-        <img src={'/api/images/' + props.image} alt={props.name} />
+const image = ({ name, image, click, plantId}) => (
+    <div onClick={(e) => click(e, plantId)}>
+        <img src={'/api/images/' + image} alt={name} />
     </div>
 );
 

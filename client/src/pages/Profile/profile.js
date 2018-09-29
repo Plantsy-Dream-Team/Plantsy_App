@@ -51,13 +51,13 @@ class Profile extends Component {
         })
     }
 
-    changePlantHealth(event) {
+    changePlantHealth = event => {
         API.Plant.update(this.state.plant, {
             health: event.value
         })
     }
 
-    changeDisplayTabs(tab) {
+    changeDisplayTabs = tab => {
         const { plants } = this.state.user
 
         this.setState({
@@ -65,14 +65,14 @@ class Profile extends Component {
         });
     }
 
-    plantClicked(event){
-        console.log(event)
+    handlePlantClick = (e, plantId) => {
+        console.log(plantId);
         this.setState({
-            plant: event.value
+            plant: plantId
         })
     }
 
-    addComment(plantId) {
+    addComment = plantId => {
         API.Comments.create(plantId, {
             comment: this.state.comment
         }).then(comment => {
@@ -120,7 +120,7 @@ class Profile extends Component {
                                     <div>
                                         <Image
                                             click={this.handlePlantClick}
-                                            id={plant._id}
+                                            plantId={plant._id}
                                             image={plant.image}
                                             name={plant.name}
                                         />
