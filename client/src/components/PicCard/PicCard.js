@@ -1,13 +1,14 @@
 import React from 'react';
 import "./PicCard.css";
 
-const PicCard = props => (
-  <div>
-     <div class = "proPic">
-        <div className="img-container">
-            <img alt={props.name} src={'/api/images/' + props.image} />
-        </div>
-        <div class = "proName">{props.name}</div>
+
+const PicCard = ({ name, image, click, plantId }) => (
+  <div onClick={(e) => click(e, plantId)}>
+    <div className="proPic">
+      <div className="img-container">
+        <img alt={name} src={'/api/images/' + image} />
+      </div>
+      <div className="proName">{name}</div>
     </div>
   </div>
 );
