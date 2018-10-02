@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import PlantCard from '../../components/PlantCard';
+import PlantCard from '../../components/PlantCard';
 import API from '../../utils';
 // import Jumbotron from '../../components/Jumbotron';
 // import Nav from '../../components/Nav';
@@ -110,7 +110,18 @@ class Profile extends Component {
                                 {
                                     plant._id === this.state.plant ? (
                                         <div>
-                                        
+                                            <PlantCard
+                                                name={plant.name}
+                                                image={plant.image}
+                                                description={plant.description}
+                                            >
+                                                <PicCard
+                                                    name={this.state.user.firstname}
+                                                    image={this.state.user.profile_picture}
+                                                    click={null}
+                                                    plantId={null}
+                                                />
+                                            </PlantCard>
                                         </div>
                                     ) : (
                                             <div>

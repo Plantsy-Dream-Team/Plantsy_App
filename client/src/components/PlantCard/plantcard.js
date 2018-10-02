@@ -1,21 +1,20 @@
 import React from 'react';
 import './plantcard.css';
 
-const PlantCard = props => (
+const PlantCard = ({image, name, children, description}) => (
 
 
     <div class = "modal">
-
         <img class = "bgImage"
-        src={'/api/images/' + props.image} alt={props.name}>
+        src={'/api/images/' + image} alt={name}>
         <div class = "upperBox">
-            {props.children}
-            <div class = "cardTitle">{props.name}</div>
+            {children}
+            <div class = "cardTitle">{name}</div>
             <input class = "btnC" type = "submit" value = "Comments"/> 
         </div>
         <div class = "infoBox"> 
             <div class = "textBox">
-                {props.description}
+                {description}
             </div>
         </div>
         </img>
