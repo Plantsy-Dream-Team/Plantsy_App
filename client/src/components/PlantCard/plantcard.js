@@ -3,6 +3,7 @@ import './plantcard.css';
 
 const PlantCard = props => (
 
+
     <div class = "modal">
 
         <img class = "bgImage"
