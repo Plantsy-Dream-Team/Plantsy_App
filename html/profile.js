@@ -8,8 +8,4 @@ $(document).ready(function(){
         $(".modal").removeClass("active");
     });
 
-    $(".plantPic").on("click", function(){
-        $(".modal").addClass("green");
-    });
-
 });

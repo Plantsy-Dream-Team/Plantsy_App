@@ -1,1 +1,1 @@
-export { default } from "./PicCard"
+export { default } from "./PlantPicCard"
