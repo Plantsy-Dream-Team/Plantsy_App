@@ -2,6 +2,7 @@ import React from 'react';
 import './plantcard.css';
 
 const PlantCard = props => (
+
 <div>
     <img class = "bgImage"
     src={'/api/images/' + props.image} alt={props.name}>

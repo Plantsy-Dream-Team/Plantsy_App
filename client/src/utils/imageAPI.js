@@ -14,9 +14,10 @@ export default {
         //Create plant photo
             //api/images/plant/:plantId
 
-    logImg: (id) => {
-        return axios.get('localhost:3001/api/images/' + id)
-        .catch(err => console.log(err))
+    create: (plantId, file) => {
+       
+        return axios.post('/api/images/' + plantId, file)
+        .catch(err => console.log(err));
     },
 
     remove: (filename) => {
