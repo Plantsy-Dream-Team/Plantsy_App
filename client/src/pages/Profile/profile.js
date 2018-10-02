@@ -106,16 +106,27 @@ class Profile extends Component {
                 <div className="picContainer">
                     <div className="picBox">
                         <LazyLoad height={200}>
-                            {this.state.display_plants.map(plant => (
-                                <div>
-                                    <PicCard
-                                    name={plant.name}
-                                    image={plant.image}
-                                    click={this.state.handlePlantClick}
-                                    plantId={plant._id}
-                                    />
-                                </div>
-                            ))}
+                            {this.state.display_plants.map(plant => {
+                                {
+                                    plant._id === this.state.plant ? (
+                                        <div>
+                                        
+                                        </div>
+                                    ) : (
+                                            <div>
+                                                <div>
+                                                    <PicCard
+                                                        name={plant.name}
+                                                        image={plant.image}
+                                                        click={this.state.handlePlantClick}
+                                                        plantId={plant._id}
+                                                    />
+                                                </div>
+                                            </div>
+                                        )
+                                }
+
+                            })}
                         </LazyLoad>
                     </div>
                 </div>
