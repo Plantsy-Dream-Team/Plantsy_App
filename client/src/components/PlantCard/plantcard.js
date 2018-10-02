@@ -5,19 +5,16 @@ const PlantCard = ({image, name, children, description}) => (
 
 
     <div class = "modal">
-        <img class = "bgImage"
-        src={'/api/images/' + image} alt={name}>
-        <div class = "upperBox">
+        <div className = "upperBox">
             {children}
-            <div class = "cardTitle">{name}</div>
-            <input class = "btnC" type = "submit" value = "Comments"/> 
+            <div className = "cardTitle">{name}</div>
+            <input className = "btnC" type = "submit" value = "Comments"/> 
         </div>
-        <div class = "infoBox"> 
-            <div class = "textBox">
+        <div className = "infoBox"> 
+            <div className = "textBox">
                 {description}
             </div>
         </div>
-        </img>
     </div>
 
 );

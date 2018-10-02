@@ -106,38 +106,35 @@ class Profile extends Component {
                 <div className="picContainer">
                     <div className="picBox">
                         <LazyLoad height={200}>
-                            {this.state.display_plants.map(plant => {
-                                {
-                                    plant._id === this.state.plant ? (
+                            {this.state.display_plants.map(plant => (
+                                plant._id === this.state.plant ? (
+                                    <div>
+                                        <PlantCard
+                                            name={plant.name}
+                                            image={plant.image}
+                                            description={plant.description}
+                                        >
+                                            <PicCard
+                                                name={this.state.user.firstname}
+                                                image={this.state.user.profile_picture}
+                                                click={null}
+                                                plantId={null}
+                                            />
+                                        </PlantCard>
+                                    </div>
+                                ) : (
                                         <div>
-                                            <PlantCard
-                                                name={plant.name}
-                                                image={plant.image}
-                                                description={plant.description}
-                                            >
-                                                <PicCard
-                                                    name={this.state.user.firstname}
-                                                    image={this.state.user.profile_picture}
-                                                    click={null}
-                                                    plantId={null}
-                                                />
-                                            </PlantCard>
-                                        </div>
-                                    ) : (
                                             <div>
-                                                <div>
-                                                    <PicCard
-                                                        name={plant.name}
-                                                        image={plant.image}
-                                                        click={this.state.handlePlantClick}
-                                                        plantId={plant._id}
-                                                    />
-                                                </div>
+                                                <PicCard
+                                                    name={plant.name}
+                                                    image={plant.image}
+                                                    click={this.handlePlantClick}
+                                                    plantId={plant._id}
+                                                />
                                             </div>
-                                        )
-                                }
-
-                            })}
+                                        </div>
+                                    )
+                            ))}
                         </LazyLoad>
                     </div>
                 </div>
