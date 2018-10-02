@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import PlantCard from '../../components/PlantCard';
+// import PlantCard from '../../components/PlantCard';
 import API from '../../utils';
-import Jumbotron from '../../components/Jumbotron';
-import Nav from '../../components/Nav';
-import Image from '../../components/Image';
+// import Jumbotron from '../../components/Jumbotron';
+// import Nav from '../../components/Nav';
+// import Image from '../../components/Image';
 import LazyLoad from 'react-lazyload';
-import InputForm from '../../components/InputForm';
-import {FormBtn} from '../../components/Form'
-
+// import InputForm from '../../components/InputForm';
+// import { FormBtn } from '../../components/Form'
+import PicCard from '../../components/PicCard'
 
 class Profile extends Component {
     state = {
@@ -79,7 +79,7 @@ class Profile extends Component {
     imageUploadHandler = (e) => {
         console.log(this.state.prepedPlant)
         API.Image.create(this.state.prepedPlant, e.target.files[0])
-            
+
     }
 
     addComment = plantId => {
@@ -103,58 +103,20 @@ class Profile extends Component {
     render() {
         return (
             <div>
-                <div className="container">
-                    <Nav />
-                    <Jumbotron>
-                        <h1>
-                            Plantsy
-                    </h1>
-                    </Jumbotron>
-                    {this.state.prepedPlant ? (
-                        <div>
-                            <InputForm
-                                handleInputChange={this.handleInputChange}
-                                imageUploadHandler={this.imageUploadHandler}
-                                createPlant={this.createPlant}
-                                plantname={this.state.plantname}
-                                description={this.state.description}
-                            />
-                        </div>
-                    ) : (
-                            <div>
-                                <FormBtn
-                                    onClick={this.prepPlantForCreation}
-                                >Create Plant</FormBtn>
-                            </div>
-                        )}
-                    {this.state.display_plants.map(plant => (
+
+                <div className="picContainer">
+                    <div className="picBox">
                         <LazyLoad height={200}>
-                            {this.state.plant === plant._id ? (
+                            {this.state.display_plants.map(plant => (
                                 <div>
-                                    <PlantCard
-                                        key={plant._id}
-                                        name={plant.name}
-                                        description={plant.description}
-                                        comments={plant.comments}
-                                    >
-                                        <Image
-                                            image={plant.image}
-                                            name={plant.name}
-                                        />
-                                    </PlantCard>
+                                    <PicCard
+                                    name={plant.name}
+                                    image={plant.image}
+                                    />
                                 </div>
-                            ) : (
-                                    <div>
-                                        <Image
-                                            click={this.handlePlantClick}
-                                            plantId={plant._id}
-                                            image={plant.image}
-                                            name={plant.name}
-                                        />
-                                    </div>
-                                )}
+                            ))}
                         </LazyLoad>
-                    ))}
+                    </div>
                 </div>
             </div>
 
