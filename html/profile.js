@@ -15,5 +15,9 @@ $(document).ready(function(){
     $(".picModal").on("click", function(){
         $(".picModal").removeClass("on");
     });
+    
+    $(".btnR").on("click", function(){
+        $(".modal").addClass("active");
+    });
 
 });
