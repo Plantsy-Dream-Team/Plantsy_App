@@ -1,62 +1,98 @@
-body{
-    margin:20px 75px 0px 75px;
-    
-}
-
-.proPic{
-    float:left;
-    width:200px;
-    height:200px;
-    box-shadow:1px 1px 7px 0.5px rgb(82, 81, 81);
-    margin: 20px 50px 50px 20px;
+.modal{
+    visibility:hidden;
+    background-color: rgb(119, 150, 48);
+    box-shadow:0px 0px 10px 0.8px rgb(1, 253, 1);
+    position: fixed;
+    z-index: 1;
+    overflow: auto;
     border-radius: 20px;
+    width:70%;
+    height:600px;
+    margin-top: 45px;
+    margin-left:20px;
+    left:15%;
 }
 
-.proPic:hover{
-    transform: scale(1.1);
+.modal.active{
+    visibility:visible;
 }
 
-.proName{
-    background-color:rgba(89, 122, 28, 0.795);
-    width:100%;
-    height:50px;
-    margin-top: 150px;
-    text-align: center;
-    vertical-align: center;
-    font-size: 20px;
-    line-height: 50px;
-    color: white;
-    font-family: sans-serif;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+.upperBox{
+    width:70%;
+    height:250px;
+    background-image: linear-gradient(to bottom right, rgb(156, 201, 85), rgb(73, 100, 22));
+    position: fixed;
 }
-
 
 .bgImage{
     width:100%;
-    height:750px;
-    background-image: url("https://www.almanac.com/sites/default/files/styles/primary_image_in_article/public/image_nodes/jade-planting-growing.jpg?itok=ZqJeFCA7");
+    height:625px;
+    background-image: url("");
     background-repeat: no-repeat;
     background-size: contain;
 }
 
-.title{
+.cardTitle{
     float:right;
     font-size: 50px;
     color:white;
-    margin: 35px;
+    margin-top:30px;
+    margin-right:30px;
     background-color:rgb(156, 201, 85);
     padding:50px;
     border-radius: 20px;
 }
 
 .infoBox{
-   background-color:rgba(89, 122, 28, 0.795);
+    background-color:rgba(89, 122, 28, 0.795);
     width:100%;
     height:auto;
+    margin-top: 250px;
     color:white;
     font-size: 24px;
     float:left;
-    padding:20px;
-    border-radius: 20px;
 }
+
+.textBox{
+    margin:20px;
+}
+
+::-webkit-scrollbar
+{
+  width: 8px;  /* for vertical scrollbars */
+  height: 4px; /* for horizontal scrollbars */
+  border-radius:100%; 
+}
+
+::-webkit-scrollbar-track
+{
+  background: rgba(0, 0, 0, 0);
+  border-radius:20%;  
+}
+
+::-webkit-scrollbar-thumb
+{
+  background: rgba(0, 0, 0, 0);
+  overflow-x: hidden;
+  border-radius:20%; 
+}
+
+.btnC{
+    color:white;
+    background-color:rgba(156, 201, 85, 0);
+    border:none;
+    font-size:18px; 
+    margin-left:35px;
+    margin: 220px 35px 0px 60%;
+    position: absolute;
+}
+
+.btnC:hover{
+    transform: scale(1.1);
+    box-shadow:1px 1px 7px 0.5px rgb(82, 81, 81);
+    border-radius: 15px;
+}
+
+
+
+
