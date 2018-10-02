@@ -1,5 +1,62 @@
-.plantCard {
-    width: 300px;
-    float: left;
-    margin: 10px;
+body{
+    margin:20px 75px 0px 75px;
+    
+}
+
+.proPic{
+    float:left;
+    width:200px;
+    height:200px;
+    box-shadow:1px 1px 7px 0.5px rgb(82, 81, 81);
+    margin: 20px 50px 50px 20px;
+    border-radius: 20px;
+}
+
+.proPic:hover{
+    transform: scale(1.1);
+}
+
+.proName{
+    background-color:rgba(89, 122, 28, 0.795);
+    width:100%;
+    height:50px;
+    margin-top: 150px;
+    text-align: center;
+    vertical-align: center;
+    font-size: 20px;
+    line-height: 50px;
+    color: white;
+    font-family: sans-serif;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+
+.bgImage{
+    width:100%;
+    height:750px;
+    background-image: url("https://www.almanac.com/sites/default/files/styles/primary_image_in_article/public/image_nodes/jade-planting-growing.jpg?itok=ZqJeFCA7");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.title{
+    float:right;
+    font-size: 50px;
+    color:white;
+    margin: 35px;
+    background-color:rgb(156, 201, 85);
+    padding:50px;
+    border-radius: 20px;
+}
+
+.infoBox{
+   background-color:rgba(89, 122, 28, 0.795);
+    width:100%;
+    height:auto;
+    color:white;
+    font-size: 24px;
+    float:left;
+    padding:20px;
+    border-radius: 20px;
 }

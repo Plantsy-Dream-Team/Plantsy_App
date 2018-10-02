@@ -2,22 +2,20 @@ import React from 'react';
 import './plantcard.css';
 
 const PlantCard = props => (
-    <div>
-        <div className="plantCard card">
-            <div className="card-body">
-                <h5 className="card-title">{props.name}</h5>
-            </div>
-            <img className="cardImage card-img-bottom" src={'/api/images/' + props.image} alt={props.name}/>
-            <div className="card-body">
-                <p className="card-text">{props.description}</p>
-                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-                <br></br>
-
-                {props.comments.map(comment => <p>{comment.comment}</p>)}
-
-            </div>
-        </div>
+<div>
+    <img class = "bgImage"
+    src={'/api/images/' + props.image} alt={props.name}>
+    <div class = "proPic">
+        <div class = "proName">Profile Name</div>
     </div>
+    <div class = "title">{props.name}</div>
+    <div class = "infoBox">{props.description}
+        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+        {props.comments.map(comment => <p>{comment.comment}</p>)}
+    </div>
+    </img>
+</div>
+  
 );
 
 export default PlantCard;
