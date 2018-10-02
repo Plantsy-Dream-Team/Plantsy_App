@@ -9,8 +9,8 @@ export default {
 
     //Input username
     //Output plant data
-    createUserPlant: (username) => {
-        return axios.post('/api/plant/', username)
+    createUserPlant: (username, plant) => {
+        return axios.post('/api/plant/' + username, plant)
             .catch(err => console(err));
     },
 

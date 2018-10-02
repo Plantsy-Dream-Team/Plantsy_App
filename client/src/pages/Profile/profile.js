@@ -4,20 +4,23 @@ import API from '../../utils';
 import Jumbotron from '../../components/Jumbotron';
 import Nav from '../../components/Nav';
 import Image from '../../components/Image';
-// import Form from '../../components/Form';
 import LazyLoad from 'react-lazyload';
+import InputForm from '../../components/InputForm';
+import {FormBtn} from '../../components/Form'
+
 
 class Profile extends Component {
     state = {
         user: { plants: 'Plant' },
         tab: 'default',
         display_plants: [],
-        prepedPlant: '',
+        uploadImage: null,
+        prepedPlant: null,
         plant: '5bac252453d8ba2f3e9e0527',
-        plantname: '',
-        description: '',
-        health: '',
-        comment: ''
+        plantname: null,
+        description: null,
+        health: null,
+        comment: null
     }
 
     async componentDidMount() {
@@ -35,15 +38,16 @@ class Profile extends Component {
             .catch(err => console.log(err));
     }
 
-    prepPlantForCreation() {
-        API.Plant.createUserPlant(this.state.user.username, {name: 'Staged'})
-            .then(result => this.setState({
-                prepedPlant: result._id
-            }))
+    prepPlantForCreation = () => {
+        API.Plant.createUserPlant(this.state.user.username, { name: 'Staged' })
+            .then(result => (this.setState({
+                prepedPlant: result.data._id
+            }, console.log(this.state.prepedPlant))))
     }
 
     createPlant() {
-        API.Plant.update(this.state.plant, {
+        console.log(this.state.prepedPlant)
+        API.Plant.update(this.state.prepedPlant, {
             name: this.state.plantname,
             description: this.state.description,
         }).then(plant => {
@@ -72,13 +76,19 @@ class Profile extends Component {
         })
     }
 
+    imageUploadHandler = (e) => {
+        console.log(this.state.prepedPlant)
+        API.Image.create(this.state.prepedPlant, e.target.files[0])
+            
+    }
+
     addComment = plantId => {
         API.Comments.create(plantId, {
             comment: this.state.comment
         }).then(comment => {
-            
+
             this.state.user.plants
-                .filter(plant => plantId === plant._id ).comments
+                .filter(plant => plantId === plant._id).comments
                 .push(comment);
         })
     }
@@ -100,6 +110,23 @@ class Profile extends Component {
                             Plantsy
                     </h1>
                     </Jumbotron>
+                    {this.state.prepedPlant ? (
+                        <div>
+                            <InputForm
+                                handleInputChange={this.handleInputChange}
+                                imageUploadHandler={this.imageUploadHandler}
+                                createPlant={this.createPlant}
+                                plantname={this.state.plantname}
+                                description={this.state.description}
+                            />
+                        </div>
+                    ) : (
+                            <div>
+                                <FormBtn
+                                    onClick={this.prepPlantForCreation}
+                                >Create Plant</FormBtn>
+                            </div>
+                        )}
                     {this.state.display_plants.map(plant => (
                         <LazyLoad height={200}>
                             {this.state.plant === plant._id ? (
