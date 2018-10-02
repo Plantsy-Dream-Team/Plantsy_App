@@ -103,7 +103,6 @@ class Profile extends Component {
     render() {
         return (
             <div>
-
                 <div className="picContainer">
                     <div className="picBox">
                         <LazyLoad height={200}>
@@ -112,6 +111,8 @@ class Profile extends Component {
                                     <PicCard
                                     name={plant.name}
                                     image={plant.image}
+                                    click={this.state.handlePlantClick}
+                                    plantId={plant._id}
                                     />
                                 </div>
                             ))}
