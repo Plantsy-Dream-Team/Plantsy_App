@@ -8,8 +8,7 @@ const ProfileCard = props => (
         <div className = "bgImage">
         <img src={'/api/images/' + props.image} alt={props.name}></img>
         <div class = "upperBox">
-            <div class = "cardTitle">{props.name}</div>
-            <input class = "btnC" type = "submit" value = "Comments"/> 
+            <div class = "cardTitle2">{props.name}</div>
         </div>
         <div class = "infoBox"> 
             <div class = "textBox">

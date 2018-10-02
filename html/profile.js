@@ -8,4 +8,12 @@ $(document).ready(function(){
         $(".modal").removeClass("active");
     });
 
+    $(".proPic").on("click", function(){
+        $(".picModal").addClass("on");
+    });
+
+    $(".picModal").on("click", function(){
+        $(".picModal").removeClass("on");
+    });
+
 });

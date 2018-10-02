@@ -1,4 +1,4 @@
-.modal{
+.picModal{
     visibility:visible;
     background-color: rgb(119, 150, 48);
     box-shadow:1px 1px 5px 0.8px rgb(95, 94, 94);
@@ -13,9 +13,10 @@
     left:15%;
 }
 
-.modal.active{
+.picModal.active{
     visibility:visible;
 }
+
 
 .upperBox{
     width:70%;
@@ -33,7 +34,7 @@
     overflow: hidden;
 }
 
-.cardTitle{
+.cardTitle2{
     float:left;
     font-size: 50px;
     color:white;
