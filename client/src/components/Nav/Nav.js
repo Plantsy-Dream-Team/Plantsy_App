@@ -1,11 +1,11 @@
 import React from "react";
 
 const Nav = () => (
-  <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a className="navbar-brand" href="/">
-      Plantsy
-    </a>
-  </nav>
+  <div className="nav">
+    <div className="navLink">Nursery</div>
+    <div className="navLink">Help</div>
+    <div className="navLink_R">R.I.P</div>
+  </div>
 );
 
 

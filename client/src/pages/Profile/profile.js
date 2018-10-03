@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import PlantCard from '../../components/PlantCard';
 import API from '../../utils';
-// import Jumbotron from '../../components/Jumbotron';
-// import Nav from '../../components/Nav';
+import Jumbotron from '../../components/Jumbotron';
+import Nav from '../../components/Nav';
 // import Image from '../../components/Image';
 import LazyLoad from 'react-lazyload';
 // import InputForm from '../../components/InputForm';
 // import { FormBtn } from '../../components/Form'
 import PicCard from '../../components/PicCard'
+import './profile.css';
 
 class Profile extends Component {
     state = {
@@ -103,39 +104,31 @@ class Profile extends Component {
     render() {
         return (
             <div>
-                <div className="picContainer">
-                    <div className="picBox">
-                        <LazyLoad height={200}>
-                            {this.state.display_plants.map(plant => (
-                                plant._id === this.state.plant ? (
+                <Jumbotron>
+                    <PicCard
+                        name={this.state.user.username}
+                        image={this.state.user.profile_picture}
+                        click={null}
+                        plantId={null}
+                    />
+                </Jumbotron>
+                <div className="picBody">
+                    <Nav />
+                    <div className="picContainer">
+                        <div className="picBox">
+                            <LazyLoad height={200}>
+                                {this.state.display_plants.map(plant => (
                                     <div>
-                                        <PlantCard
+                                        <PicCard
                                             name={plant.name}
                                             image={plant.image}
-                                            description={plant.description}
-                                        >
-                                            <PicCard
-                                                name={this.state.user.firstname}
-                                                image={this.state.user.profile_picture}
-                                                click={null}
-                                                plantId={null}
-                                            />
-                                        </PlantCard>
-                                    </div>
-                                ) : (
-                                        <div>
-                                            <div>
-                                                <PicCard
-                                                    name={plant.name}
-                                                    image={plant.image}
-                                                    click={this.handlePlantClick}
-                                                    plantId={plant._id}
-                                                />
-                                            </div>
-                                        </div>
-                                    )
-                            ))}
-                        </LazyLoad>
+                                            click={this.handlePlantClick}
+                                            plantId={plant._id}
+                                        />
+                                    </div>)
+                                )}
+                            </LazyLoad>
+                        </div>
                     </div>
                 </div>
             </div>
