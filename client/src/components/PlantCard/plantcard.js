@@ -1,10 +1,10 @@
 import React from 'react';
 import './plantcard.css';
 
-const PlantCard = ({image, name, children, description}) => (
+const PlantCard = ({image, name, children, description, modal, health, close}) => (
 
 
-    <div class = "modal">
+    <div class={`modal ${modal} ${health}`} onClick={close}>
         <div className = "upperBox">
             {children}
             <div className = "cardTitle">{name}</div>

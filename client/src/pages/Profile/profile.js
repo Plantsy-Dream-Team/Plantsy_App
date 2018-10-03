@@ -17,9 +17,12 @@ class Profile extends Component {
         display_plants: [],
         uploadImage: null,
         prepedPlant: null,
-        plant: '5bac252453d8ba2f3e9e0527',
+        plant: '',
+        modal: '',
         plantname: null,
         description: null,
+        comments: null,
+        image: null,
         health: null,
         comment: null
     }
@@ -70,13 +73,20 @@ class Profile extends Component {
         });
     }
 
-    handlePlantClick = (e, plantId) => {
-        console.log(plantId);
+    handlePlantClick = (e, plant) => {
+        console.log(plant);
         this.setState({
-            plant: plantId
+            modal: 'active',
+            plant: plant
         })
     }
 
+    closeModal = () => {
+        this.setState({
+            modal: '',
+            plant: ''
+        })
+    }
     imageUploadHandler = (e) => {
         console.log(this.state.prepedPlant)
         API.Image.create(this.state.prepedPlant, e.target.files[0])
@@ -104,12 +114,22 @@ class Profile extends Component {
     render() {
         return (
             <div>
+                <PlantCard
+                    modal={this.state.modal}
+                    name={this.state.plant.name}
+                    description={this.state.plant.description}
+                    health={this.state.plant.health}
+                    close={this.closeModal}
+                >
+                    <PicCard
+                        name={this.state.user.username}
+                        image={this.state.plant.image}
+                    />
+                </PlantCard>
                 <Jumbotron>
                     <PicCard
                         name={this.state.user.username}
                         image={this.state.user.profile_picture}
-                        click={null}
-                        plantId={null}
                     />
                 </Jumbotron>
                 <div className="picBody">
@@ -123,7 +143,7 @@ class Profile extends Component {
                                             name={plant.name}
                                             image={plant.image}
                                             click={this.handlePlantClick}
-                                            plantId={plant._id}
+                                            plant={[plant]}
                                         />
                                     </div>)
                                 )}
