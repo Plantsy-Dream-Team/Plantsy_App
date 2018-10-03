@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Profile from './pages/Profile';
+import Test from './pages/Test';
 // import Login from './pages/Login';
 
 class App extends Component {
@@ -9,7 +10,7 @@ class App extends Component {
             <div>
 
   
-            <Profile/>
+            <Test/>
 
             </div>
         );
