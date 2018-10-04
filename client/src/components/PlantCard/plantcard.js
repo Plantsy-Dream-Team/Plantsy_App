@@ -3,21 +3,21 @@ import './plantcard.css';
 
 const PlantCard = props => (
 
-    <div class = "modal">
+    <div className = "modal">
 
-        <img class = "bgImage"
-        src={'/api/images/' + props.image} alt={props.name}>
-        <div class = "upperBox">
+        <div className = "bgImage">
+       <img src={'/api/images/' + props.image} alt={props.name}></img>
+        <div className = "upperBox">
             {props.children}
-            <div class = "cardTitle">{props.name}</div>
-            <input class = "btnC" type = "submit" value = "Comments"/> 
+            <div className = "cardTitle">{props.name}</div>
+            <input className = "btnC" type = "submit" value = "Comments"/> 
         </div>
-        <div class = "infoBox"> 
-            <div class = "textBox">
+        <div className = "infoBox"> 
+            <div className = "textBox">
                 {props.description}
             </div>
         </div>
-        </img>
+        </div>
     </div>
 
 );
