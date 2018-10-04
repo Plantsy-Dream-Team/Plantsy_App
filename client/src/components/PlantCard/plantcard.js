@@ -4,6 +4,7 @@ import './plantcard.css';
 const PlantCard = ({image, name, children, description}) => (
 
 
+
     <div class = "modal">
         <div className = "upperBox">
             {children}
@@ -12,11 +13,11 @@ const PlantCard = ({image, name, children, description}) => (
         </div>
         <div className = "infoBox"> 
             <div className = "textBox">
+
                 {description}
             </div>
         </div>
     </div>
-
 );
 
 export default PlantCard;
