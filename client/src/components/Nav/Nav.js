@@ -1,6 +1,7 @@
 import React from "react";
 
 const Nav = () => (
+
   <div class = "nav">
     <div class = "navLink">Thriving</div>
     <div class = "navLink"> Needs Help</div>
