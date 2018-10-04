@@ -4,6 +4,7 @@ import Dropzone from 'react-dropzone';
 import ReactCrop from 'react-image-crop';
 import { image64toCanvasRef, extractImageFileExtensionFromBase64, base64StringtoFile, downloadBase64File } from '../../../base64/base64';
 import 'react-image-crop/dist/ReactCrop.css';
+import API from '../../../utils/';
 
 const maxSize = 1000000;
 const fileTypes = ['image/x-png', 'image/jpeg', 'image/png', 'image/jpg']
@@ -13,7 +14,6 @@ class DragNDrop extends Component {
         super(props)
         this.imagePreviewCanvasRef = React.createRef()
         this.state = {
-
             imgSrc: null,
             imgSrcExt: null,
             crop: {
@@ -86,22 +86,23 @@ class DragNDrop extends Component {
         image64toCanvasRef(canvasRef, imgSrc, pixelCrop)
     }
 
-    handleDownLoadClick = (event) => {
+    handleAddImage = (event) => {
         event.preventDefault()
         const { imgSrc } = this.state
         const { imgSrcExt } = this.state
         if (imgSrc) {
-            const canvasRef = this.imagePreviewCanvasRef
-
-            const imageData64 = canvasRef.toDataURL('image/' + imgSrcExt);
-
+            const canvasRef = this.imagePreviewCanvasRef.current
+            const imageData64 = canvasRef.toDataURL('image' + imgSrcExt);
             const myFileName = "Preview File" + imgSrcExt
             const myNewCroppedFile = base64StringtoFile(imageData64, myFileName)
+            const fd = new FormData();
+            fd.append('image', myNewCroppedFile);
+            API.Image.create(fd)
+                .then(res => this.props.setImageFileName(res));
         }
     }
 
-    handleDefaultClearing = event => {
-        event.preventDefault()
+    handleDefaultClearing = () => {
         const canvas = this.imagePreviewCanvasRef.current;
         const ctx = canvas.getContext('2d');
         ctx.clearReact(0, 0, canvas.width, canvas.height)
@@ -129,6 +130,7 @@ class DragNDrop extends Component {
                             onComplete={this.handleOnCropComplete} />
                         <br />
                         <canvas ref={this.imagePreviewCanvasRef}></canvas>
+                        <button onClick={this.handleAddImage}></button>
                     </div>
                     :
                     <div>
