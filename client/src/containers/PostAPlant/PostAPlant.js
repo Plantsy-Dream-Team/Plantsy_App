@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import PicCard from '../PicCard';
-import DragNDrop from '../../containers/AddPlant/DragNDrop';
+import DragNDrop from '../PostAPlant/DragNDrop';
+import API from '../../utils';
 
 class PostPlant extends Component {
     constructor(props) {
@@ -27,8 +27,21 @@ class PostPlant extends Component {
         });
     }
 
+    handleSubmit = event => {
+        event.preventDefault();
+        API.Plant.createUserPlant(this.props.username, {
+            name: this.state.name,
+            description: this.state.description,
+            image: this.state.imageFileName
+        }).then(result => {
+            this.props.addPlantToUser(result.data);
+        })
+        
+    }
+
 
     render() {
+        
         return (
             <div>
                 <div className="formModal">
@@ -43,26 +56,17 @@ class PostPlant extends Component {
 
                             <div className="bgImage">
                                 <div className="upperBox">
-                                    <PicCard
-                                        image={this.state.imageFileName}
-                                        name={''}
-                                    />
+                                    <div className="cardTitle2">Post a Plant</div>
                                 </div>
                                 <form>
                                     <h3>Plant Name:</h3>
-                                    <input className="inputBox" name='name' type="text"  onChange={this.handleInputChange}/>
+                                    <input className="inputBox" name='name' type="text" onChange={this.handleInputChange} />
                                     <h3>Plant Info:</h3>
-                                    <textarea className="textBox"  name='description' type='text' onChange={this.handleInputChange}>
+                                    <textarea className="textBox" name='description' type='text' onChange={this.handleInputChange}>
                                     </textarea>
-                                    <input className="submitBtn" type="submit" value="Submit" />
+                                    <input className="submitBtn" type="submit" value="Submit" onClick={this.handleSubmit}/>
                                 </form>
                             </div>
-                            <img src={'/api/images/' + this.state.imageFileName} alt="Preped Image" />
-                            <form>
-                                <input  type='text'  />
-                                <textarea    />
-                                <button >Add Plant</button>
-                            </form>
                         </div>
                     }
 

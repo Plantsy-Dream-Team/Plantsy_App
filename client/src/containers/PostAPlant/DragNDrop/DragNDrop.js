@@ -16,6 +16,7 @@ class DragNDrop extends Component {
         this.state = {
             imgSrc: null,
             imgSrcExt: null,
+            isCropped: false,
             crop: {
                 aspect: 1 / 1
             }
@@ -84,6 +85,9 @@ class DragNDrop extends Component {
         const canvasRef = this.imagePreviewCanvasRef.current
         const { imgSrc } = this.state
         image64toCanvasRef(canvasRef, imgSrc, pixelCrop)
+        this.setState({
+            isCropped: true
+        })
     }
 
     handleAddImage = (event) => {
@@ -97,6 +101,7 @@ class DragNDrop extends Component {
             const myNewCroppedFile = base64StringtoFile(imageData64, myFileName)
             const fd = new FormData();
             fd.append('image', myNewCroppedFile);
+            this.handleDefaultClearing();
             API.Image.create(fd)
                 .then(res => this.props.setImageFileName(res));
         }
@@ -105,11 +110,12 @@ class DragNDrop extends Component {
     handleDefaultClearing = () => {
         const canvas = this.imagePreviewCanvasRef.current;
         const ctx = canvas.getContext('2d');
-        ctx.clearReact(0, 0, canvas.width, canvas.height)
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
 
         this.setState({
             imgSrc: null,
             imgSrcExt: null,
+            isCropped: false,
             crop: {
                 aspect: 1 / 1
             }
@@ -120,27 +126,42 @@ class DragNDrop extends Component {
         const { imgSrc, crop } = this.state
         return (
             <div>
+
                 {imgSrc ?
                     <div>
-                        <ReactCrop
-                            src={imgSrc}
-                            crop={crop}
-                            onChange={this.handleOnCropChange}
-                            onImageLoaded={this.handleImageLoaded}
-                            onComplete={this.handleOnCropComplete} />
+                        <div>
+                            <h1 className='text-center'>Click on the image to crop it</h1>
+                        </div>
+                        <div>
+                            <ReactCrop
+                                src={imgSrc}
+                                crop={crop}
+                                onChange={this.handleOnCropChange}
+                                onImageLoaded={this.handleImageLoaded}
+                                onComplete={this.handleOnCropComplete} />
+                        </div>
+
                         <br />
                         <canvas ref={this.imagePreviewCanvasRef}></canvas>
-                        <button onClick={this.handleAddImage}></button>
+                        {this.state.isCropped ?
+                            <div>
+                                <button onClick={this.handleAddImage}>Add Picture</button>
+                            </div>
+                            :
+                            null
+                        }
+
                     </div>
                     :
                     <div>
+                        <h1 className='text-center'>Click on the box to upload a file</h1>
                         <Dropzone
                             onDrop={this.handleDrop}
                             maxSize={maxSize}
 
                             multiple={false}
                             accept={fileTypes}
-                        >Click to upload</Dropzone>
+                        ></Dropzone>
                     </div>
                 }
             </div>
