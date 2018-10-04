@@ -2,16 +2,23 @@ import React, { Component } from "react";
 import axios from 'axios';
 import Dropzone from 'react-dropzone';
 import ReactCrop from 'react-image-crop';
+import { image64toCanvasRef, extractImageFileExtensionFromBase64, base64StringtoFile, downloadBase64File } from '../../../base64/base64';
 import 'react-image-crop/dist/ReactCrop.css';
 
 const maxSize = 1000000;
 const fileTypes = ['image/x-png', 'image/jpeg', 'image/png', 'image/jpg']
 
 class DragNDrop extends Component {
-    state = {
-        imgSrc: null,
-        crop: {
-            aspect: 1 / 1
+    constructor(props) {
+        super(props)
+        this.imagePreviewCanvasRef = React.createRef()
+        this.state = {
+
+            imgSrc: null,
+            imgSrcExt: null,
+            crop: {
+                aspect: 1 / 1
+            }
         }
     }
 
@@ -50,7 +57,8 @@ class DragNDrop extends Component {
                 reader.addEventListener("load", () => {
                     console.log(reader.result)
                     this.setState({
-                        imgSrc: reader.result
+                        imgSrc: reader.result,
+                        imgSrcExt: extractImageFileExtensionFromBase64(reader.result)
                     })
                 }, false)
 
@@ -72,7 +80,39 @@ class DragNDrop extends Component {
     }
 
     handleOnCropComplete = (crop, pixelCrop) => {
-        console.log(crop, pixelCrop);
+        // console.log(crop, pixelCrop);
+        const canvasRef = this.imagePreviewCanvasRef.current
+        const { imgSrc } = this.state
+        image64toCanvasRef(canvasRef, imgSrc, pixelCrop)
+    }
+
+    handleDownLoadClick = (event) => {
+        event.preventDefault()
+        const { imgSrc } = this.state
+        const { imgSrcExt } = this.state
+        if (imgSrc) {
+            const canvasRef = this.imagePreviewCanvasRef
+
+            const imageData64 = canvasRef.toDataURL('image/' + imgSrcExt);
+
+            const myFileName = "Preview File" + imgSrcExt
+            const myNewCroppedFile = base64StringtoFile(imageData64, myFileName)
+        }
+    }
+
+    handleDefaultClearing = event => {
+        event.preventDefault()
+        const canvas = this.imagePreviewCanvasRef.current;
+        const ctx = canvas.getContext('2d');
+        ctx.clearReact(0, 0, canvas.width, canvas.height)
+
+        this.setState({
+            imgSrc: null,
+            imgSrcExt: null,
+            crop: {
+                aspect: 1 / 1
+            }
+        })
     }
 
     render() {
@@ -87,6 +127,8 @@ class DragNDrop extends Component {
                             onChange={this.handleOnCropChange}
                             onImageLoaded={this.handleImageLoaded}
                             onComplete={this.handleOnCropComplete} />
+                        <br />
+                        <canvas ref={this.imagePreviewCanvasRef}></canvas>
                     </div>
                     :
                     <div>
@@ -96,10 +138,9 @@ class DragNDrop extends Component {
 
                             multiple={false}
                             accept={fileTypes}
-                        >Drop image here or click to upload</Dropzone>
+                        >Click to upload</Dropzone>
                     </div>
                 }
-
             </div>
         )
     }
