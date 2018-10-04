@@ -14,7 +14,8 @@
     color: white;
     line-height: 250px;
     font-family: 'Special Elite', cursive;
-   
+    position: fixed;
+    margin-left:450px;
 }
 
 .btnL{
@@ -42,10 +43,33 @@
     position: absolute;
     margin-top: 165px;
     margin-left: 43%;
+    z-index: 1;
 }
 
 .btnP:hover{
     transform: scale(1.1);
     box-shadow:1px 1px 7px 0.5px rgb(82, 81, 81);
     border-radius: 15px;
+}
+
+.btnS{
+    float:left;
+    color:white;
+    margin-left:30px;
+    margin-top: 215px;
+    background-color:rgba(156, 201, 85, 0);
+    border:none;
+    font-size:18px;
+    padding:5px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+.btnS::placeholder{
+    color:white;
+}
+
+.btnS:focus{
+    width:30%;
+    border:2px solid white;
 }
