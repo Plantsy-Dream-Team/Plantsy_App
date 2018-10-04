@@ -44,7 +44,7 @@ class PostPlant extends Component {
         
         return (
             <div>
-                <div className="formModal">
+                <div className="modal active">
                     {!this.state.imageFileName ?
                         <div>
                             <DragNDrop

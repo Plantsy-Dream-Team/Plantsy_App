@@ -47,7 +47,7 @@ class Profile extends Component {
 
     handlePostAPlantClick = () => {
         this.setState({
-
+            addingPlant: true
         })
     }
 
