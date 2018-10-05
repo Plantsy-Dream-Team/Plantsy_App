@@ -28,14 +28,10 @@ class Profile extends Component {
     }
 
     getUser() {
-        API.User.findByUsername('dallinmajor')
-            .then(user => {
-                this.setState({
-                    user: user.data,
-                    display_plants: user.data.plants
-                })
-            })
-            .catch(err => console.log(err));
+        this.setState({
+            user: this.props.user,
+            display_plants: this.props.user.plants
+        })
     }
 
     prepPlantForCreation = () => {
@@ -110,7 +106,7 @@ class Profile extends Component {
             </div>
         )
         return (
-            <div>
+            <div className="background">
                 {this.state.addingPlant ? plantAdder : null}
                 <PlantCard
                     modal={this.state.modal}
@@ -125,7 +121,8 @@ class Profile extends Component {
                     />
                 </PlantCard>
                 <Jumbotron
-                handlePostAPlantClick={this.handlePostAPlantClick}
+                    handlePostAPlantClick={this.handlePostAPlantClick}
+                    logOut={this.props.logOut}
                 >
                     <PicCard
                         name={this.state.user.username}

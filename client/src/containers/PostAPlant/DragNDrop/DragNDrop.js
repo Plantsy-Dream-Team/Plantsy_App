@@ -132,7 +132,7 @@ class DragNDrop extends Component {
                 {imgSrc ?
                     <div>
                         <div>
-                            <h1 className='text-center'>Click on the image to crop it</h1>
+                            <h1 className='text-center'>Great Picture! Now all you have to do is Crop it!</h1>
                         </div>
                         <div>
                             <ReactCrop
@@ -147,7 +147,7 @@ class DragNDrop extends Component {
                         <canvas ref={this.imagePreviewCanvasRef} className='imageCanvas'></canvas>
                         {this.state.isCropped ?
                             <div>
-                                <button onClick={this.handleAddImage}>Add Picture</button>
+                                <button onClick={this.handleAddImage}>Submit</button>
                             </div>
                             :
                             null
@@ -156,7 +156,7 @@ class DragNDrop extends Component {
                     </div>
                     :
                     <div>
-                        <h1 className='text-center'>Click on the box to upload a file</h1>
+                        <h1 className='text-center'>Click to upload Picture</h1>
                         <Dropzone
                             onDrop={this.handleDrop}
                             maxSize={maxSize}

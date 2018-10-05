@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from '../../utils';
 import './createUser.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import DragNDrop from '../../containers/PostAPlant/DragNDrop';
 import { Form, Col, FormGroup, Label, Input, Button, Container, FormFeedback, FormText } from 'reactstrap';
 

@@ -38,7 +38,7 @@ export default {
             .catch(err => console.log(err));
     },
 
-    validate: (username, password) => {
+    userValidation: (username, password) => {
         return axios.post('api/user', {
             username: username,
             password: password
