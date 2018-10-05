@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/userAPI";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Form, Col, FormGroup, Label, Input, Button, Container } from 'reactstrap';
 
 
 class LoginPage extends Component {
@@ -52,7 +54,35 @@ class LoginPage extends Component {
     render() {
         return (
             <div>
-                <Jumbotron>
+                <Container className="App">
+                    <h2>Sign In</h2>
+                    <Form className="form">
+                        <Col>
+                            <FormGroup>
+                                <Label>Email</Label>
+                                <Input
+                                    type="email"
+                                    name="email"
+                                    id="exampleEmail"
+                                    placeholder="myemail@email.com"
+                                />
+                            </FormGroup>
+                        </Col>
+                        <Col>
+                            <FormGroup>
+                                <Label for="examplePassword">Password</Label>
+                                <Input
+                                    type="password"
+                                    name="password"
+                                    id="examplePassword"
+                                    placeholder="********"
+                                />
+                            </FormGroup>
+                        </Col>
+                        <Button>Submit</Button>
+                    </Form>
+                </Container>
+                {/* <Jumbotron>
                     <h1> Plantsy </h1>
                 </Jumbotron>
                 <div className="Login">
@@ -72,7 +102,7 @@ class LoginPage extends Component {
 
                         <input type="submit" value="Log In" data-test="submit" />
                     </form>
-                </div>
+                </div> */}
             </div>
         );
     }

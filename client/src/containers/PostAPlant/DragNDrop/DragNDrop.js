@@ -4,6 +4,7 @@ import Dropzone from 'react-dropzone';
 import ReactCrop from 'react-image-crop';
 import { image64toCanvasRef, extractImageFileExtensionFromBase64, base64StringtoFile, downloadBase64File } from '../../../base64/base64';
 import 'react-image-crop/dist/ReactCrop.css';
+import './DragNDrop.css';
 import API from '../../../utils/';
 
 const maxSize = 1000000;
@@ -104,6 +105,7 @@ class DragNDrop extends Component {
             this.handleDefaultClearing();
             API.Image.create(fd)
                 .then(res => this.props.setImageFileName(res));
+            
         }
     }
 
@@ -142,7 +144,7 @@ class DragNDrop extends Component {
                         </div>
 
                         <br />
-                        <canvas ref={this.imagePreviewCanvasRef}></canvas>
+                        <canvas ref={this.imagePreviewCanvasRef} className='imageCanvas'></canvas>
                         {this.state.isCropped ?
                             <div>
                                 <button onClick={this.handleAddImage}>Add Picture</button>
