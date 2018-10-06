@@ -68,7 +68,7 @@ router.get('/:filename', (req, res) => {
 
         if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
             const readstream = gfs.createReadStream(file._id);
-            readstream.pipe(res);
+            readstream.pipe(res)
         } else {
             res.status(404).json({
                 err: 'Not an image'

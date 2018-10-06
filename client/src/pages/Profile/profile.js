@@ -48,11 +48,33 @@ class Profile extends Component {
         })
     }
 
+    deletePlant = (plantId) => {
+        let {user} = this.state
+        user.plants.filter(plant => plant._id !== plantId);
+        this.setState({
+            user: user
+        })
+
+        API.Plant.removeFromUser(plantId, user.username);
+    }
+
     addPlantToUser = (plant) => {
-        const user = this.state.user
+        let {user} = this.state
         user.plants.unshift(plant)
         this.setState({
             user: user,
+            addingPlant: false
+        })
+    }
+
+    cancelAddingPlant = (filename) => {
+        console.log(filename);
+        if(filename) {
+            API.Image.remove(filename)
+                .then(result => console.log(result));
+        }
+
+        this.setState({
             addingPlant: false
         })
     }
@@ -104,6 +126,7 @@ class Profile extends Component {
                 <PostPlant
                 username={this.state.user.username}
                 addPlantToUser={this.addPlantToUser}
+                cancel={this.cancelAddingPlant}
                 />
             </div>
         )

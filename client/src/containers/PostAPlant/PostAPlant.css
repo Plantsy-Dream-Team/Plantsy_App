@@ -1,0 +1,28 @@
+.cancelBtn {
+    position: absolute;
+    top: -15px;
+    right: 30px;
+    font-size: 40px;
+}
+
+.create-plant-box {
+    padding: 20px;
+}
+
+.plantInput {
+    font-size: 14px;
+    padding: 4px;
+    width: 100%;
+    margin: auto;
+    border-radius: 6px;
+}
+
+.imageWarning {
+    font-style: italic;
+    font-weight: 300;
+    color: darkred;
+}
+
+.healthSelect {
+    font-size: 16px;
+}

@@ -102,9 +102,11 @@ class DragNDrop extends Component {
             const myNewCroppedFile = base64StringtoFile(imageData64, myFileName)
             const fd = new FormData();
             fd.append('image', myNewCroppedFile);
-            this.handleDefaultClearing();
             API.Image.create(fd)
-                .then(res => this.props.setImageFileName(res));
+                .then(res => {
+                    this.handleDefaultClearing();
+                    this.props.setImageFileName(res)
+                });
 
         }
     }
@@ -127,54 +129,59 @@ class DragNDrop extends Component {
     render() {
         const { imgSrc, crop } = this.state
         return (
-            <div>
-
-                {imgSrc ?
-                    <div>
+            <div className='dropNCrop'>
+                <div className='box-center'>
+                    {imgSrc ?
                         <div>
-                            <h1 className='text-center'>Great Picture! Now all you have to do is Crop it!</h1>
-                        </div>
-                        <div>
-                            <ReactCrop
-                                src={imgSrc}
-                                crop={crop}
-                                onChange={this.handleOnCropChange}
-                                onImageLoaded={this.handleImageLoaded}
-                                onComplete={this.handleOnCropComplete} />
-                        </div>
-
-                        <br />
-                        <canvas ref={this.imagePreviewCanvasRef} className='imageCanvas'></canvas>
-                        {this.state.isCropped ?
                             <div>
-                                <button onClick={this.handleAddImage}>Submit</button>
+                                <h1 className='text-center'>Click to Crop</h1>
                             </div>
-                            :
-                            null
-                        }
+                            <br/>
+                            <div>
+                                <ReactCrop
+                                    src={imgSrc}
+                                    crop={crop}
+                                    onChange={this.handleOnCropChange}
+                                    onImageLoaded={this.handleImageLoaded}
+                                    onComplete={this.handleOnCropComplete} />
+                            </div>
 
-                    </div>
-                    :
-                    <div>
-                        <h1 className='text-center'>Click to upload Picture</h1>
-                        <div>
-                            <Dropzone
-                                style={{
-                                    width: 300,
-                                    height: 300,
-                                    borderWidth: 4,
-                                    borderColor: '#666',
-                                    borderStyle: 'dashed',
-                                    borderRadius: 5
-                                  }}
-                                onDrop={this.handleDrop}
-                                maxSize={maxSize}
-                                multiple={false}
-                                accept={fileTypes}
-                            ></Dropzone>
+                            <br />
+                            <canvas ref={this.imagePreviewCanvasRef} className='imageCanvas'></canvas>
+                            {this.state.isCropped ?
+                                <div>
+                                    <button onClick={this.handleAddImage}>Submit</button>
+                                </div>
+                                :
+                                null
+                            }
+
                         </div>
-                    </div>
-                }
+                        :
+                        <div>
+                            <h1 className='text-center'>Image Upload</h1>
+                            <br/>
+                            <div>
+                                <Dropzone
+                                    style={{
+                                        width: 300,
+                                        height: 300,
+                                        borderWidth: 4,
+                                        borderColor: '#666',
+                                        borderStyle: 'dashed',
+                                        borderRadius: 5
+                                    }}
+                                    onDrop={this.handleDrop}
+                                    maxSize={maxSize}
+                                    multiple={false}
+                                    accept={fileTypes}
+                                >
+                                <h1 className='box-center-vertical text-center'>Click Here!</h1>
+                                </Dropzone>
+                            </div>
+                        </div>
+                    }
+                </div>
             </div>
         )
     }
