@@ -14,9 +14,10 @@
     color: white;
     line-height: 250px;
     font-family: 'Special Elite', cursive;
-
+    z-index: 0;
     margin-left: 38%;
     position:absolute;
+    height:auto;
 }
 
 .btnL{
@@ -31,6 +32,25 @@
 
 
 .btnL:hover{
+    transform: scale(1.1);
+    box-shadow:1px 1px 7px 0.5px rgb(82, 81, 81);
+    border-radius: 15px;
+   
+}
+
+.btnLog{
+    width:63px;
+    float:right;
+    color:white;
+    margin-right:20px;
+    margin-top: 219px;
+    background-color:rgba(156, 201, 85, 0);
+    border:none;
+    font-size:18px;
+}
+
+
+.btnLog:hover{
     transform: scale(1.1);
     box-shadow:1px 1px 7px 0.5px rgb(82, 81, 81);
     border-radius: 15px;
@@ -60,7 +80,6 @@
     transform: scale(1.1);
     box-shadow:1px 1px 7px 0.5px rgb(82, 81, 81);
     border-radius: 15px;
-   
 }
 
 .btnS:focus{
@@ -78,6 +97,10 @@
     margin-top: 165px;
     margin-left: 43%;
     z-index: 1;
+}
+
+.btnP.hide{
+    visibility: hidden;
 }
 
 .btnP:hover{

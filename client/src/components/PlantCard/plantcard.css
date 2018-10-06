@@ -22,6 +22,7 @@
     height:250px;
     background-image: linear-gradient(to bottom right, rgb(156, 201, 85), rgb(73, 100, 22));
     position: fixed;
+    z-index: 0;
 }
 
 .bgImage{
@@ -41,6 +42,7 @@
     background-color:rgb(156, 201, 85);
     padding:50px;
     border-radius: 20px;
+    z-index: 2;
 }
 
 .infoBox{

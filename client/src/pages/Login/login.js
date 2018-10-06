@@ -97,6 +97,9 @@ class LoginPage extends Component {
                     </Form>
                 </Container> */}
                 <div className='whiteBackground'>
+                <div className = "jumbo">
+                <div class = "title">Plantsy  </div>
+                </div>
                     <div className="Login">
                         <form onSubmit={this.handleSubmit}>
                             {
@@ -106,14 +109,19 @@ class LoginPage extends Component {
                                     {this.state.error}
                                 </h3>
                             }
-                            <label>User Name</label>
-                            <input type="text" data-test="username" value={this.state.username} onChange={this.handleUserChange} />
+                            <label >User Name  </label>
+                            <input className = "label" type="text" data-test="username" value={this.state.username} onChange={this.handleUserChange} />
 
-                            <label>Password</label>
-                            <input type="password" data-test="password" value={this.state.password} onChange={this.handlePassChange} />
-
-                            <input type="submit" value="Log In" data-test="submit" />
+                            <label>Password  </label>
+                            <input className = "label" type="password" data-test="password" value={this.state.password} onChange={this.handlePassChange} />
+                    
+                            <input className = "subBtn" type="submit" value="Log In" data-test="submit" />
                         </form>
+                    </div>
+                    <div className = "newUserText">
+                            Dont have an Account? 
+
+                            <input className = "newUserBtn" type="submit" value="Create an Account" data-test="submit" />
                     </div>
                 </div>
             </div>
