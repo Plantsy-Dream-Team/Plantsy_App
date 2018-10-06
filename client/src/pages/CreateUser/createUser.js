@@ -65,7 +65,7 @@ class CreateUser extends Component {
                 "about": about,
                 "profile_picture": image.data
                 
-            }).then(result => console.log(result));
+            }).then(result => this.props.login(result.data));
         }
     }
 

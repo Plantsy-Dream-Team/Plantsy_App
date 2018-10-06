@@ -68,37 +68,9 @@ class LoginPage extends Component {
     render() {
         return (
             <div>
-                {/* <Container className="App">
-                    <h2>Sign In</h2>
-                    <Form className="form">
-                        <Col>
-                            <FormGroup>
-                                <Label>Email</Label>
-                                <Input
-                                    type="email"
-                                    name="email"
-                                    id="exampleEmail"
-                                    placeholder="myemail@email.com"
-                                />
-                            </FormGroup>
-                        </Col>
-                        <Col>
-                            <FormGroup>
-                                <Label for="examplePassword">Password</Label>
-                                <Input
-                                    type="password"
-                                    name="password"
-                                    id="examplePassword"
-                                    placeholder="********"
-                                />
-                            </FormGroup>
-                        </Col>
-                        <Button>Submit</Button>
-                    </Form>
-                </Container> */}
                 <div className='whiteBackground'>
                     <div className="Login">
-                        <form onSubmit={this.handleSubmit}>
+                        <form>
                             {
                                 this.state.error &&
                                 <h3 data-test="error" onClick={this.dismissError}>
@@ -112,9 +84,11 @@ class LoginPage extends Component {
                             <label>Password</label>
                             <input type="password" data-test="password" value={this.state.password} onChange={this.handlePassChange} />
 
-                            <input type="submit" value="Log In" data-test="submit" />
+                            <input type="submit" value="Log In" onClick={this.handleSubmit} />
                         </form>
                     </div>
+                    <br/><br/>
+                    <button onClick={this.props.userCreation}>Create Account?</button>
                 </div>
             </div>
         );

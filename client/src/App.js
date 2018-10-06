@@ -2,15 +2,21 @@ import React, { Component } from 'react';
 import Profile from './pages/Profile';
 import CreateUser from './pages/CreateUser';
 import LoginPage from './pages/Login';
-import Test from './pages/Test';
 
 // import Login from './pages/Login';
 
 class App extends Component {
-
     state = {
         user: null,
         friend: null,
+        newUser: false
+    }
+
+    userCreation = () => {
+        console.log('clicked');
+        this.setState({
+            newUser: true
+        })
     }
 
     login = (user) => {
@@ -31,26 +37,39 @@ class App extends Component {
 
 
     render() {
-        const {user, friend} = this.state
+        this.userCreation.bind(this)
+
+        const { user, friend } = this.state
         return (
             <div>
-                
+
                 {user ? (
                     <div>
-                        <Profile 
-                        user={user}
-                        logOut={this.logOut}
+                        <Profile
+                            user={user}
+                            logOut={this.logOut}
                         />
                     </div>
                 )
-                 :
-                (
-                    <div>
-                        <LoginPage
-                            setUser={this.login}
-                        />
-                    </div>
-                )
+                    :
+                    (
+                        <div>
+                            {!this.state.newUser ? (
+                                <div>
+                                <LoginPage
+                                    setUser={this.login}
+                                    userCreation={this.userCreation}
+                                />
+                            </div>
+                            ) : (
+                                <div>
+                                    <CreateUser
+                                        login={this.login}
+                                    />
+                                </div>
+                            )}
+                        </div>
+                    )
                 }
             </div>
         );
