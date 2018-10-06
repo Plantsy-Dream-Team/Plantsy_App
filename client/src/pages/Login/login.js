@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import Jumbotron from "../../components/Jumbotron";
 import API from '../../utils';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-import './Login.css';
-import { Form, Col, FormGroup, Label, Input, Button, Container } from 'reactstrap';
-
+import './Login.css'
 
 class LoginPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
-            password: '',
+            username: null,
+            password: null,
             error: '',
         };
 
@@ -54,6 +49,7 @@ class LoginPage extends Component {
     }
 
     handleUserChange(evt) {
+        console.log(evt.target.value)
         this.setState({
             username: evt.target.value,
         });
@@ -82,17 +78,16 @@ class LoginPage extends Component {
                                 </h3>
                             }
                             <label >User Name  </label>
-                            <input className = "label" type="text" data-test="username" value={this.state.username} onChange={this.handleUserChange} />
+                            <input className = "label" type="text" onChange={this.handleUserChange} />
                             <label>Password  </label>
-                            <input className = "label" type="password" data-test="password" value={this.state.password} onChange={this.handlePassChange} />
+                            <input className = "label" type="password" onChange={this.handlePassChange} />
                     
-                            <input className = "subBtn" type="submit" value="Log In" data-test="submit" />
+                            <button className = "subBtn" onClick={this.handleSubmit}>Login</button>
                         </form>
                     </div>
                     <div className = "newUserText">
                             Dont have an Account? 
-
-                            <input className = "newUserBtn" type="submit" value="Create an Account" data-test="submit" />
+                            <input className = "newUserBtn" value="Create an Account" />
                     </div>
                 </div>
             </div>
