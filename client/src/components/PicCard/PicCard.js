@@ -8,7 +8,6 @@ const PicCard = ({ name, image, click, plant }) => (
       <div className="img-container">
         <img className='plantPicture' alt={name} src={'/api/images/' + image} />
       </div>
-      <div className="proName">{name}</div>
     </div>
   </div>
 );
