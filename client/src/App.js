@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Profile from './pages/Profile';
 import CreateUser from './pages/CreateUser';
 import LoginPage from './pages/Login';
+import API from './utils';
+import { bake_cookie, read_cookie, delete_cookie } from 'sfcookies';
 
 // import Login from './pages/Login';
 
@@ -12,6 +14,10 @@ class App extends Component {
         newUser: false
     }
 
+    componentDidMount() {
+        this.userCookies();
+    }
+
     userCreation = () => {
         console.log('clicked');
         this.setState({
@@ -19,8 +25,23 @@ class App extends Component {
         })
     }
 
+    userCookies = () => {
+       const cookie = read_cookie('username');
+       console.log(cookie);
+       if(cookie[0]) {
+           API.User.findByUsername(cookie)
+            .then(result => {
+                if (result.data) {
+                    this.setState({
+                        user: result.data
+                    })
+                }
+            });
+       }
+    }
+
     login = (user) => {
-        console.log(user)
+        bake_cookie('username', user.username);
         if (user) {
             this.setState({
                 user: user
@@ -29,6 +50,7 @@ class App extends Component {
     }
 
     logOut = () => {
+        delete_cookie('username');
         this.setState({
             user: null,
             friend: null

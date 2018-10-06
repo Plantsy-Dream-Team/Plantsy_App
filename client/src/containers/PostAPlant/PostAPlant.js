@@ -63,7 +63,7 @@ class PostPlant extends Component {
                             <h3>Plant Info:</h3>
                             <textarea className="textBox" name='description' type='text' onChange={this.handleInputChange}>
                             </textarea>
-                            {this.state.imageFileName ? (
+                            {!this.state.imageFileName ? (
                                 <div>
                                     <h3>Be sure to add Picture</h3>
                                 </div>
