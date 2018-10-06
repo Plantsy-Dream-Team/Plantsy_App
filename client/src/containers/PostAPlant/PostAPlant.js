@@ -43,8 +43,7 @@ class PostPlant extends Component {
     render() {
         
         return (
-            <div>
-                <div className="modal active">
+            <div className="modal active">
                     {!this.state.imageFileName ?
                         <div>
                             <DragNDrop
@@ -53,7 +52,6 @@ class PostPlant extends Component {
                         </div>
                         :
                         <div>
-
                             <div className="bgImage">
                                 <div className="upperBox">
                                     <div className="cardTitle2">Post a Plant</div>
@@ -69,8 +67,6 @@ class PostPlant extends Component {
                             </div>
                         </div>
                     }
-
-                </div>
             </div>
         )
     }

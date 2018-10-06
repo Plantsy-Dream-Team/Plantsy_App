@@ -160,7 +160,6 @@ class DragNDrop extends Component {
                         <Dropzone
                             onDrop={this.handleDrop}
                             maxSize={maxSize}
-
                             multiple={false}
                             accept={fileTypes}
                         ></Dropzone>

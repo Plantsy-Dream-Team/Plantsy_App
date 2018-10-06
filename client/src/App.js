@@ -34,6 +34,7 @@ class App extends Component {
         const {user, friend} = this.state
         return (
             <div>
+                
                 {user ? (
                     <div>
                         <Profile 
@@ -41,7 +42,8 @@ class App extends Component {
                         logOut={this.logOut}
                         />
                     </div>
-                ) :
+                )
+                 :
                 (
                     <div>
                         <LoginPage
