@@ -68,40 +68,12 @@ class LoginPage extends Component {
     render() {
         return (
             <div>
-                {/* <Container className="App">
-                    <h2>Sign In</h2>
-                    <Form className="form">
-                        <Col>
-                            <FormGroup>
-                                <Label>Email</Label>
-                                <Input
-                                    type="email"
-                                    name="email"
-                                    id="exampleEmail"
-                                    placeholder="myemail@email.com"
-                                />
-                            </FormGroup>
-                        </Col>
-                        <Col>
-                            <FormGroup>
-                                <Label for="examplePassword">Password</Label>
-                                <Input
-                                    type="password"
-                                    name="password"
-                                    id="examplePassword"
-                                    placeholder="********"
-                                />
-                            </FormGroup>
-                        </Col>
-                        <Button>Submit</Button>
-                    </Form>
-                </Container> */}
                 <div className='whiteBackground'>
                 <div className = "jumbo">
                 <div class = "title">Plantsy  </div>
                 </div>
                     <div className="Login">
-                        <form onSubmit={this.handleSubmit}>
+                        <form>
                             {
                                 this.state.error &&
                                 <h3 data-test="error" onClick={this.dismissError}>
@@ -111,7 +83,6 @@ class LoginPage extends Component {
                             }
                             <label >User Name  </label>
                             <input className = "label" type="text" data-test="username" value={this.state.username} onChange={this.handleUserChange} />
-
                             <label>Password  </label>
                             <input className = "label" type="password" data-test="password" value={this.state.password} onChange={this.handlePassChange} />
                     

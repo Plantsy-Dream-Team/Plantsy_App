@@ -24,6 +24,7 @@ class Profile extends Component {
     }
 
     async componentDidMount() {
+        console.log(this.props.user)
         this.getUser();
     }
 
@@ -48,9 +49,10 @@ class Profile extends Component {
     }
 
     addPlantToUser = (plant) => {
-        console.log(plant)
+        const user = this.state.user
+        user.plants.unshift(plant)
         this.setState({
-            user: this.state.user.plants.shift(plant),
+            user: user,
             addingPlant: false
         })
     }
