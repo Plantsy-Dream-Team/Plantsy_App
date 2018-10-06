@@ -17,7 +17,7 @@
     z-index: 0;
     margin-left: 38%;
     position:absolute;
-    height:auto;
+    height:50px;
 }
 
 .btnL{
@@ -86,6 +86,7 @@
     width: 30%;
     border:2px solid white;
     border-radius: 15px;
+    outline:none;
 }
 
 .btnP{
@@ -96,7 +97,7 @@
     position: absolute;
     margin-top: 165px;
     margin-left: 43%;
-    z-index: 1;
+  
 }
 
 .btnP.hide{
