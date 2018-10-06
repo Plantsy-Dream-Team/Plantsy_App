@@ -7,7 +7,7 @@ const Jumbotron = ({ handlePostAPlantClick, children, logOut }) => (
       {children}
 
       <div class = "title">Plantsy  </div>
-          <input className = "btnL" onClick={logOut} value = "Logout"/> 
+          <input className = "btnLog" onClick={logOut} value = "Logout"/> 
           <input className = "btnL" type = "submit" value = "Profile"/>
           <input className = "btnL" type = "submit" value = "Home"/>
           <input className = "btnS" type = "Text" placeholder = "Search"/>
