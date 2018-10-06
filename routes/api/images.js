@@ -27,6 +27,11 @@ router.post('/plant/:plantId', upload.single('image'), (req, res) => {
 
 //ROUTES for User Profile_Picture
 
+router.post('/', upload.single('image'), (req, res) => {
+    console.log(req.file.filename);
+    res.send(req.file.filename);
+})
+
 router.post('/profilePicture/:username', upload.single('image'), (req, res) => {
     //Update user profile_picture. if there is one there replace it
     db.User
