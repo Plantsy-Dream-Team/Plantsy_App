@@ -27,10 +27,9 @@ router.post('/plant/:plantId', upload.single('image'), (req, res) => {
 
 //ROUTES for User Profile_Picture
 
-router.post('/test', upload.single('image'), (req, res) => {
+router.post('/', upload.single('image'), (req, res) => {
     console.log(req.file.filename);
-    console.log(req.body);
-    res.send('worked!');
+    res.send(req.file.filename);
 })
 
 router.post('/profilePicture/:username', upload.single('image'), (req, res) => {

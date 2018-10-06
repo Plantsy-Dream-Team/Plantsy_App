@@ -14,8 +14,8 @@ export default {
         //lastname
     //Output User Data
     create: (user) => {
-        return axios.post('/api/user/register' + user)
-            .catch(err => console(err));
+        return axios.post('/api/user/register', user)
+            .catch(err => console.log(err));
     },
 
     //Input username
@@ -38,7 +38,7 @@ export default {
             .catch(err => console.log(err));
     },
 
-    validate: (username, password) => {
+    userValidation: (username, password) => {
         return axios.post('api/user', {
             username: username,
             password: password

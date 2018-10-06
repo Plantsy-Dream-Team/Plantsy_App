@@ -8,6 +8,7 @@ import LazyLoad from 'react-lazyload';
 // import InputForm from '../../components/InputForm';
 // import { FormBtn } from '../../components/Form'
 import PicCard from '../../components/PicCard'
+import PostPlant from '../../containers/PostAPlant'
 import './profile.css';
 
 class Profile extends Component {
@@ -15,16 +16,11 @@ class Profile extends Component {
         user: { plants: 'Plant' },
         tab: 'default',
         display_plants: [],
-        uploadImage: null,
-        prepedPlant: null,
+        addingPlant: false,
         plant: '',
         modal: '',
         plantname: null,
-        description: null,
-        comments: null,
-        image: null,
-        health: null,
-        comment: null
+        description: null, 
     }
 
     async componentDidMount() {
@@ -32,14 +28,10 @@ class Profile extends Component {
     }
 
     getUser() {
-        API.User.findByUsername('dallinmajor')
-            .then(user => {
-                this.setState({
-                    user: user.data,
-                    display_plants: user.data.plants
-                })
-            })
-            .catch(err => console.log(err));
+        this.setState({
+            user: this.props.user,
+            display_plants: this.props.user.plants
+        })
     }
 
     prepPlantForCreation = () => {
@@ -49,13 +41,17 @@ class Profile extends Component {
             }, console.log(this.state.prepedPlant))))
     }
 
-    createPlant() {
-        console.log(this.state.prepedPlant)
-        API.Plant.update(this.state.prepedPlant, {
-            name: this.state.plantname,
-            description: this.state.description,
-        }).then(plant => {
-            this.state.user.plants.push(plant);
+    handlePostAPlantClick = () => {
+        this.setState({
+            addingPlant: true
+        })
+    }
+
+    addPlantToUser = (plant) => {
+        console.log(plant)
+        this.setState({
+            user: this.state.user.plants.shift(plant),
+            addingPlant: false
         })
     }
 
@@ -87,11 +83,7 @@ class Profile extends Component {
             plant: ''
         })
     }
-    imageUploadHandler = (e) => {
-        console.log(this.state.prepedPlant)
-        API.Image.create(this.state.prepedPlant, e.target.files[0])
-
-    }
+    
 
     addComment = plantId => {
         API.Comments.create(plantId, {
@@ -104,16 +96,18 @@ class Profile extends Component {
         })
     }
 
-    handleInputChange = event => {
-        const { name, value } = event.target;
-        this.setState({
-            [name]: value
-        });
-    };
-
     render() {
-        return (
+        const plantAdder = (
             <div>
+                <PostPlant
+                username={this.state.user.username}
+                addPlantToUser={this.addPlantToUser}
+                />
+            </div>
+        )
+        return (
+            <div className="background">
+                {this.state.addingPlant ? plantAdder : null}
                 <PlantCard
                     modal={this.state.modal}
                     name={this.state.plant.name}
@@ -126,7 +120,10 @@ class Profile extends Component {
                         image={this.state.plant.image}
                     />
                 </PlantCard>
-                <Jumbotron>
+                <Jumbotron
+                    handlePostAPlantClick={this.handlePostAPlantClick}
+                    logOut={this.props.logOut}
+                >
                     <PicCard
                         name={this.state.user.username}
                         image={this.state.user.profile_picture}
