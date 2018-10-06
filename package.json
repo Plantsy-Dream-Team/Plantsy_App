@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
     "client": "cd client && yarn start",
     "server": "nodemon server.js",
     "seed": "node scripts/seeds.js",
