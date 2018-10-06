@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
+
     status: {
         type: String,
         default: 'active'
@@ -9,12 +10,9 @@ var UserSchema = new Schema({
 
     username: {
         type: String,
-        trim: true,
-        index: {
-            unique: true
-        },
-        required: "Username is Required"
-    },
+        required: [true, 'User email address is required!']
+    }
+    ,
     password: {
         type: String,
         trim: true,
@@ -26,6 +24,12 @@ var UserSchema = new Schema({
             "Password should be longer."
         ]
     },
+
+    fullname: {
+        type: String,
+        trim: true
+    },
+
     firstname: {
         type: String,
         trim: true
@@ -34,6 +38,11 @@ var UserSchema = new Schema({
     lastname: {
         type: String,
         trim: true
+    },
+
+    about: {
+        type: String,
+        tirm: true
     },
 
     plants: [
@@ -55,5 +64,7 @@ var UserSchema = new Schema({
 }, { timestamps: true });
 
 var User = mongoose.model("User", UserSchema);
+
+
 
 module.exports = User;

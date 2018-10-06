@@ -14,9 +14,8 @@ export default {
         //Create plant photo
             //api/images/plant/:plantId
 
-    create: (plantId, file) => {
-       
-        return axios.post('/api/images/' + plantId, file)
+    create: (file) => {
+        return axios.post('/api/images', file)
         .catch(err => console.log(err));
     },
 
