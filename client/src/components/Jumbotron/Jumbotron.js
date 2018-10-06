@@ -5,12 +5,12 @@ const Jumbotron = ({ children }) => (
   <div className = "jumbo">
       <input className = "btnP" type = "submit" value = "Post a Plant"></input>
       {children}
-      <div class = "title">Plantsy
+      <div class = "title">Plantsy  </div>
           <input className = "btnL" type = "submit" value = "Logout"/> 
-          <input className = "btnL" type = "submit" value = "Search"/>
           <input className = "btnL" type = "submit" value = "Profile"/>
           <input className = "btnL" type = "submit" value = "Home"/>
-      </div>
+          <input className = "btnS" type = "Text" placeholder = "Search"/>
+
     </div>
 );
 
