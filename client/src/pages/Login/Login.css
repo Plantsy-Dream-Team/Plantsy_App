@@ -95,3 +95,22 @@ label{
     font-size: 20px;
     padding:20px;
 }
+
+.errorCss{
+    text-align: center;
+}
+
+.okBtn{
+    color:white;
+    background-color: rgb(89, 122, 28);
+    box-shadow:1px 1px 5px 0.8px rgb(95, 94, 94);
+    width:50px;
+    height:25px;
+    border:none;
+    font-size: 20px;
+    border-radius: 15px;
+}
+
+.okBtn:hover{
+    background-color:rgb(149, 194, 90);
+}

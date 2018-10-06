@@ -77,7 +77,7 @@ class CreateUser extends Component {
                         <br /><br />
                         <Container className="App">
                             <h2 className='text-center'>New Account</h2>
-                            <br />
+                            
                             <form>
 
                             </form>
@@ -141,9 +141,9 @@ class CreateUser extends Component {
                                 <Col>
                                     <FormGroup>
                                         <Label>About You</Label>
-                                        <FormText>Tell us about yourself and you as a plant grower!</FormText>
+                                        <FormText></FormText>
                                         <br />
-                                        <Input type="textarea" className="input" onChange={this.handleInputChange} name="about" id="aboutInput" rows='10' />
+                                        <Input type="textarea" className="input" onChange={this.handleInputChange} name="about" id="aboutInput" rows='10' placeholder = "Tell us about yourself and you as a plant grower!" />
                                     </FormGroup>
 
                                 </Col>

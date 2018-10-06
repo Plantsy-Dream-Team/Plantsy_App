@@ -72,8 +72,8 @@ class LoginPage extends Component {
                         <form>
                             {
                                 this.state.error &&
-                                <h3 data-test="error" onClick={this.dismissError}>
-                                    <button onClick={this.dismissError}>✖</button>
+                                <h3 class = "errorCss" data-test="error" onClick={this.dismissError}>
+                                    <button class = "okBtn" onClick={this.dismissError}>Ok  </button>
                                     {this.state.error}
                                 </h3>
                             }
