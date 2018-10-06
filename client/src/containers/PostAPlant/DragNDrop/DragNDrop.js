@@ -3,7 +3,7 @@ import axios from 'axios';
 import Dropzone from 'react-dropzone';
 import ReactCrop from 'react-image-crop';
 import { image64toCanvasRef, extractImageFileExtensionFromBase64, base64StringtoFile, downloadBase64File } from '../../../base64/base64';
-import 'react-image-crop/dist/ReactCrop.css';
+// import 'react-image-crop/dist/ReactCrop.css';
 import './DragNDrop.css';
 import API from '../../../utils/';
 
@@ -105,7 +105,7 @@ class DragNDrop extends Component {
             this.handleDefaultClearing();
             API.Image.create(fd)
                 .then(res => this.props.setImageFileName(res));
-            
+
         }
     }
 
@@ -157,12 +157,22 @@ class DragNDrop extends Component {
                     :
                     <div>
                         <h1 className='text-center'>Click to upload Picture</h1>
-                        <Dropzone
-                            onDrop={this.handleDrop}
-                            maxSize={maxSize}
-                            multiple={false}
-                            accept={fileTypes}
-                        ></Dropzone>
+                        <div>
+                            <Dropzone
+                                style={{
+                                    width: 300,
+                                    height: 300,
+                                    borderWidth: 4,
+                                    borderColor: '#666',
+                                    borderStyle: 'dashed',
+                                    borderRadius: 5
+                                  }}
+                                onDrop={this.handleDrop}
+                                maxSize={maxSize}
+                                multiple={false}
+                                accept={fileTypes}
+                            ></Dropzone>
+                        </div>
                     </div>
                 }
             </div>

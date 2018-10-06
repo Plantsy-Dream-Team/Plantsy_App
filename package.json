@@ -30,6 +30,7 @@
     "react-scripts": "^2.0.4"
   },
   "devDependencies": {
+    "case-sensitive-paths-webpack-plugin": "^2.1.2",
     "concurrently": "^3.5.0"
   }
 }
