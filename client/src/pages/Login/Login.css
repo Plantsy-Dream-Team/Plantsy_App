@@ -3,6 +3,14 @@ body {
     margin:0px;
 }
 
+.input {
+    font-size: 14px;
+    padding: 4px;
+    width: 100%;
+    margin: auto;
+    border-radius: 6px;
+}
+
 .jumbo{
     background-color:rgb(156, 201, 85);
     background-image: linear-gradient(to bottom right, rgb(156, 201, 85), rgb(73, 100, 22));

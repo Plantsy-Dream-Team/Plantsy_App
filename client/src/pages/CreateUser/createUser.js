@@ -33,7 +33,7 @@ class CreateUser extends Component {
 
     validateEmail = e => {
         const emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        const {validate} = this.state;
+        const { validate } = this.state;
         if (emailRex.test(e.target.value)) {
             validate.emailState = 'has-success'
         } else {
@@ -54,8 +54,8 @@ class CreateUser extends Component {
 
     handleSubmit = (image) => {
         console.log(image.data);
-        const { firstname, lastname, email, password, about} = this.state
-        if(firstname && lastname && email && password) {
+        const { firstname, lastname, email, password, about } = this.state
+        if (firstname && lastname && email && password) {
             API.User.create({
                 "username": email,
                 "password": password,
@@ -64,7 +64,7 @@ class CreateUser extends Component {
                 "lastname": lastname,
                 "about": about,
                 "profile_picture": image.data
-                
+
             }).then(result => this.props.login(result.data));
         }
     }
@@ -73,97 +73,97 @@ class CreateUser extends Component {
         return (
             <div>
                 {!this.state.next ? (
-                    <div>
-                    <br/><br/>
-                    <Container className="App">
-                        <h2>New Account</h2>
-                        <br />
-                        <Form className="form">
-                            <Col>
-                                <FormGroup>
-                                    <Label>First Name</Label>
-                                    <Input
-                                        type="text"
-                                        name="firstname"
-                                        id="firstnameInput"
-                                        placeholder="John"
-                                        onChange={this.handleInputChange}
-                                    />
-                                </FormGroup>
-                            </Col>
-                            <Col>
-                                <FormGroup>
-                                    <Label>Last Name</Label>
-                                    <Input
-                                        type="text"
-                                        name="lastname"
-                                        id="lastnameInput"
-                                        placeholder="Doe"
-                                        onChange={this.handleInputChange}
-                                    />
-                                </FormGroup>
-                            </Col>
+                    <div className='userForm'>
+                        <br /><br />
+                        <Container className="App">
+                            <h2 className='text-center'>New Account</h2>
                             <br />
-                            <Col>
-                                <FormGroup>
-                                    <Label>Email</Label>
-                                    <Input
-                                        type="email"
-                                        name="email"
-                                        id="exampleEmail"
-                                        placeholder="example@email.com"
-                                        onChange={this.validateEmail}
-                                        valid={this.state.validate.emailState === 'has-success'}
-                                        invalid={this.state.validate.emailState === 'has-danger'}
-                                    />
-                                    <FormFeedback valid>
-                                        Thank you!
-                                    </FormFeedback>
-                                    <FormFeedback invalid>
-                                        Please give a valid email address!
-                                    </FormFeedback>
-    
-                                </FormGroup>
-                            </Col>
-                            <Col>
-                                <FormGroup>
-                                    <Label for="examplePassword">Password</Label>
-                                    <Input
-                                        type="password"
-                                        name="password"
-                                        id="examplePassword"
-                                        placeholder="********"
-                                        onChange={this.handleInputChange}
-                                    />
-                                </FormGroup>
-                            </Col>
-                            <br />
-                            <Col>
-                                <FormGroup>
-                                    <Label>About You</Label>
-                                    <FormText>Tell us about yourself and you as a plant grower!</FormText>
-                                    <br />
-                                    <Input type="textarea" onChange={this.handleInputChange} name="about" id="aboutInput" rows='10' />
-                                </FormGroup>
-    
-                            </Col>
-                            <br /><br />
-                            <Button onClick={this.handleNextBtn}>Next</Button>
-                        </Form>
-                    </Container>
-                    <br/><br/>
-                </div>
+                            <form>
+
+                            </form>
+                            <Form className="form">
+                                <Col>
+                                    <FormGroup>
+                                        <Label>First Name</Label>
+                                        <Input
+                                            type="text"
+                                            className="input"
+                                            name="firstname"
+                                            id="firstnameInput"
+                                            placeholder="John"
+                                            onChange={this.handleInputChange}
+                                        />
+                                    </FormGroup>
+                                </Col>
+                                <Col>
+                                    <FormGroup>
+                                        <Label>Last Name</Label>
+                                        <Input
+                                            type="text"
+                                            name="lastname"
+                                            className="input"
+                                            id="lastnameInput"
+                                            placeholder="Doe"
+                                            onChange={this.handleInputChange}
+                                        />
+                                    </FormGroup>
+                                </Col>
+                                <br />
+                                <Col>
+                                    <FormGroup>
+                                        <Label>Email</Label>
+                                        <Input
+                                            type="email"
+                                            name="email"
+                                            id="exampleEmail"
+                                            className="input"
+                                            placeholder="example@email.com"
+                                            onChange={this.validateEmail}
+                                            valid={this.state.validate.emailState === 'has-success'}
+                                            invalid={this.state.validate.emailState === 'has-danger'}
+                                        />
+                                    </FormGroup>
+                                </Col>
+                                <Col>
+                                    <FormGroup>
+                                        <Label for="examplePassword">Password</Label>
+                                        <Input
+                                            type="password"
+                                            name="password"
+                                            id="examplePassword"
+                                            className="input"
+                                            placeholder="********"
+                                            onChange={this.handleInputChange}
+                                        />
+                                    </FormGroup>
+                                </Col>
+                                <br />
+                                <Col>
+                                    <FormGroup>
+                                        <Label>About You</Label>
+                                        <FormText>Tell us about yourself and you as a plant grower!</FormText>
+                                        <br />
+                                        <Input type="textarea" className="input" onChange={this.handleInputChange} name="about" id="aboutInput" rows='10' />
+                                    </FormGroup>
+
+                                </Col>
+                                <br /><br />
+                                <Button onClick={this.handleNextBtn}>Next</Button>
+                            </Form>
+                        </Container>
+                        <br /><br />
+                    </div>
                 )
-            :
-            (
-                <div>
-                    <Container>
-                        <DragNDrop setImageFileName={this.handleSubmit}/>
-                        <br/>
-                    </Container>
-                    
-                </div>
-            )}
+                    :
+                    (
+                        <div>
+                            <Container>
+                                <DragNDrop setImageFileName={this.handleSubmit} />
+                                <br />
+                            </Container>
+
+                        </div>
+                    )}
             </div>
         )
     }

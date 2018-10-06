@@ -150,7 +150,7 @@ class DragNDrop extends Component {
                             <canvas ref={this.imagePreviewCanvasRef} className='imageCanvas'></canvas>
                             {this.state.isCropped ?
                                 <div>
-                                    <button onClick={this.handleAddImage}>Submit</button>
+                                    <button className='subBtn' onClick={this.handleAddImage}>Crop</button>
                                 </div>
                                 :
                                 null

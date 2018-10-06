@@ -20,12 +20,23 @@ class Profile extends Component {
         plant: '',
         modal: '',
         plantname: null,
-        description: null, 
+        description: null,
     }
 
     async componentDidMount() {
-        console.log(this.props.user)
         this.getUser();
+    }
+
+    filterPlants = (health) => {
+        const { user } = this.state;
+        if (!user.plants[0]) {
+            return 'No Plants..'
+        } else {
+            const filted = user.plants.filter(plant => health.includes(plant.health) ? plant : null)
+            this.setState({
+                display_plants: filted
+            })
+        }
     }
 
     getUser() {
@@ -48,18 +59,26 @@ class Profile extends Component {
         })
     }
 
-    deletePlant = (plantId) => {
-        let {user} = this.state
-        user.plants.filter(plant => plant._id !== plantId);
+    goHome = () => {
         this.setState({
-            user: user
+            display_plants: this.state.user.plants
         })
+    }
 
-        API.Plant.removeFromUser(plantId, user.username);
+    deletePlant = (plantId) => {
+        API.Plant.removeFromUser(plantId, this.state.user.username);
+        const {user} = this.state;
+        user.plants = user.plants.filter(plant => plant._id === plantId ? null : plant)
+        console.log(user.plants);
+        console.log(user);
+        this.setState({
+            user: user,
+            display_plants: user.plants
+        })
     }
 
     addPlantToUser = (plant) => {
-        let {user} = this.state
+        let { user } = this.state
         user.plants.unshift(plant)
         this.setState({
             user: user,
@@ -69,7 +88,7 @@ class Profile extends Component {
 
     cancelAddingPlant = (filename) => {
         console.log(filename);
-        if(filename) {
+        if (filename) {
             API.Image.remove(filename)
                 .then(result => console.log(result));
         }
@@ -107,7 +126,7 @@ class Profile extends Component {
             plant: ''
         })
     }
-    
+
 
     addComment = plantId => {
         API.Comments.create(plantId, {
@@ -124,9 +143,9 @@ class Profile extends Component {
         const plantAdder = (
             <div>
                 <PostPlant
-                username={this.state.user.username}
-                addPlantToUser={this.addPlantToUser}
-                cancel={this.cancelAddingPlant}
+                    username={this.state.user.username}
+                    addPlantToUser={this.addPlantToUser}
+                    cancel={this.cancelAddingPlant}
                 />
             </div>
         )
@@ -139,6 +158,8 @@ class Profile extends Component {
                     description={this.state.plant.description}
                     health={this.state.plant.health}
                     close={this.closeModal}
+                    deletePlant={this.deletePlant}
+                    id={this.state.plant._id}
                 >
                     <PicCard
                         name={this.state.user.username}
@@ -148,6 +169,7 @@ class Profile extends Component {
                 <Jumbotron
                     handlePostAPlantClick={this.handlePostAPlantClick}
                     logOut={this.props.logOut}
+                    goHome={this.goHome}
                 >
                     <PicCard
                         name={this.state.user.username}
@@ -155,7 +177,9 @@ class Profile extends Component {
                     />
                 </Jumbotron>
                 <div className="picBody">
-                    <Nav />
+                    <Nav
+                        filterPlants={this.filterPlants}
+                    />
                     <div className="picContainer">
                         <div className="picBox">
                             <LazyLoad height={200}>

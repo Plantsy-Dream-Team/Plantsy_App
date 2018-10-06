@@ -41,6 +41,7 @@ class PostPlant extends Component {
             image: this.state.imageFileName,
             health: this.state.health
         }).then(result => {
+            console.log(result.data);
             this.props.addPlantToUser(result.data);
         })
 
@@ -68,7 +69,7 @@ class PostPlant extends Component {
                         <br /><br /><br />
                         <form>
                             <h2>Plant Name</h2>
-                            <input name='name' className='plantInput' id='name' type="text" onChange={this.handleInputChange} />
+                            <input name='name' className='input' id='name' type="text" onChange={this.handleInputChange} />
                             <h2>How's your plant doing?</h2>
                             <select className='healthSelect' id='health' name='health' onChange={this.handleInputChange}>
                                 <option value="green">Going strong</option>
@@ -76,7 +77,7 @@ class PostPlant extends Component {
                                 <option value="orange">Struggling</option>
                             </select>
                             <h2>Plant Info</h2>
-                            <textarea name='description' className='plantInput' rows='10' id='description' type='text' onChange={this.handleInputChange}>
+                            <textarea name='description' className='input' rows='10' id='description' type='text' onChange={this.handleInputChange}>
                             </textarea>
                             <br/><br/>
                             {!this.state.imageFileName ? (
@@ -85,7 +86,7 @@ class PostPlant extends Component {
                                 </div>
                             ) : (
                                     <div>
-                                        <input className="submitBtn" type="submit" value="Submit" onClick={this.handleSubmit} />
+                                        <button className="newUserBtn" onClick={this.handleSubmit}>Create Plant</button>
                                     </div>
                                 )}
                         </form>
