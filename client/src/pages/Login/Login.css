@@ -3,6 +3,14 @@ body {
     margin:0px;
 }
 
+.input {
+    font-size: 14px;
+    padding: 4px;
+    width: 100%;
+    margin: auto;
+    border-radius: 6px;
+}
+
 .jumbo{
     background-color:rgb(156, 201, 85);
     background-image: linear-gradient(to bottom right, rgb(156, 201, 85), rgb(73, 100, 22));
@@ -65,13 +73,15 @@ label{
 }
 
 .newUserBtn{
-    color:white;
+    margin: 20px;
+    color: white;
     background-color: rgb(89, 122, 28);
-    box-shadow:1px 1px 5px 0.8px rgb(95, 94, 94);
-    width:auto;
-    height:25px;
-    border:none;
-    font-size: 15px;
+    -webkit-box-shadow: 1px 1px 5px 0.8px rgb(95, 94, 94);
+    box-shadow: 1px 1px 5px 0.8px rgb(95, 94, 94);
+    width: 180px;
+    height: 30px;
+    border: none;
+    font-size: 16px;
     border-radius: 15px;
 }
 

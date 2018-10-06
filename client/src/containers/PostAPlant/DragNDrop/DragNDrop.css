@@ -2,12 +2,29 @@
     display: none;
 }
 
+.dropNCrop {
+  position: relative;
+  width: 100%;
+}
+
+.box-center {
+  width: 302px;
+  margin: auto;
+}
+
+.box-center-vertical {
+  position: relative;
+  margin: auto;
+  width: 70%;
+  top: 40%;
+}
+
 .ReactCrop {
     position: relative;
     display: inline-block;
     cursor: crosshair;
     overflow: hidden;
-    max-width: 300;
+    max-width: 100%;
     background-color: #000; }
     .ReactCrop:focus {
       outline: none; }
@@ -16,7 +33,7 @@
     .ReactCrop__image {
       /* autoprefixer: off */
       display: block;
-      max-width: 300;
+      width: 300px;
       max-height: -webkit-fill-available;
       max-height: -moz-available;
       max-height: stretch; }

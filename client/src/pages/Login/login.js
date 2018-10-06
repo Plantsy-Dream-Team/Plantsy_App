@@ -86,8 +86,8 @@ class LoginPage extends Component {
                         </form>
                     </div>
                     <div className = "newUserText">
-                            Dont have an Account? 
-                            <input className = "newUserBtn" value="Create an Account" />
+                            Don't have an Account?
+                            <button className="newUserBtn" onClick={this.props.userCreation}>Create an Account</button>
                     </div>
                 </div>
             </div>

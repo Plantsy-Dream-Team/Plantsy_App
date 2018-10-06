@@ -1,11 +1,11 @@
 import React from "react";
 
-const Nav = () => (
+const Nav = ({filterPlants}) => (
 
-  <div class = "nav">
-    <div class = "navLink">Thriving</div>
-    <div class = "navLink"> Needs Help</div>
-    <div class = "navLink_R">R.I.P</div>
+  <div className = "nav" >
+    <div className = "navLink" onClick={() => filterPlants(['green'])}>Thriving</div>
+    <div className = "navLink" onClick={() => filterPlants(['yellow','orange'])}>Needs Help</div>
+    <div className = "navLink_R" onClick={() => filterPlants([])}>R.I.P</div>
   </div>
 );
 

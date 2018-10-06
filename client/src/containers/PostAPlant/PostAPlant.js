@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import DragNDrop from '../PostAPlant/DragNDrop';
+import './PostAPlant.css';
 import API from '../../utils';
 
 class PostPlant extends Component {
@@ -8,7 +9,8 @@ class PostPlant extends Component {
         this.state = {
             imageFileName: null,
             name: '',
-            description: ''
+            description: '',
+            health: 'green'
         }
     }
 
@@ -17,6 +19,10 @@ class PostPlant extends Component {
         this.setState({
             imageFileName: imageFileName.data
         })
+    }
+
+    cancel = () => {
+        this.props.cancel(this.imageFileName);
     }
 
     handleInputChange = event => {
@@ -32,8 +38,10 @@ class PostPlant extends Component {
         API.Plant.createUserPlant(this.props.username, {
             name: this.state.name,
             description: this.state.description,
-            image: this.state.imageFileName
+            image: this.state.imageFileName,
+            health: this.state.health
         }).then(result => {
+            console.log(result.data);
             this.props.addPlantToUser(result.data);
         })
 
@@ -41,11 +49,12 @@ class PostPlant extends Component {
 
 
     render() {
-
         return (
             <div className="modal active">
-                <div>
+                <div className='create-plant-box'>
                     <div>
+                        <h3 className='cancelBtn' onClick={this.cancel}>x</h3>
+                        <br/>
                         {this.state.imageFileName ? (
                             <div>
                                 <img src={'/api/images/' + this.state.imageFileName} alt='image of your plant' />
@@ -57,19 +66,27 @@ class PostPlant extends Component {
                                     />
                                 </div>
                             )}
+                        <br /><br /><br />
                         <form>
-                            <h3>Plant Name:</h3>
-                            <input className="inputBox" name='name' type="text" onChange={this.handleInputChange} />
-                            <h3>Plant Info:</h3>
-                            <textarea className="textBox" name='description' type='text' onChange={this.handleInputChange}>
+                            <h2>Plant Name</h2>
+                            <input name='name' className='input' id='name' type="text" onChange={this.handleInputChange} />
+                            <h2>How's your plant doing?</h2>
+                            <select className='healthSelect' id='health' name='health' onChange={this.handleInputChange}>
+                                <option value="green">Going strong</option>
+                                <option value="yellow">Needs a little help</option>
+                                <option value="orange">Struggling</option>
+                            </select>
+                            <h2>Plant Info</h2>
+                            <textarea name='description' className='input' rows='10' id='description' type='text' onChange={this.handleInputChange}>
                             </textarea>
+                            <br/><br/>
                             {!this.state.imageFileName ? (
                                 <div>
-                                    <h3>Be sure to add Picture</h3>
+                                    <h3 className='imageWarning'>An image is required before submiting!</h3>
                                 </div>
                             ) : (
                                     <div>
-                                        <input className="submitBtn" type="submit" value="Submit" onClick={this.handleSubmit} />
+                                        <button className="newUserBtn" onClick={this.handleSubmit}>Create Plant</button>
                                     </div>
                                 )}
                         </form>

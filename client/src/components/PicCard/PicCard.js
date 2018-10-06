@@ -6,7 +6,7 @@ const PicCard = ({ name, image, click, plant }) => (
   <div onClick={(e) => plant ? click(e, plant[0]) : null} >
     <div className="proPic">
       <div className="img-container">
-        <img alt={name} src={'/api/images/' + image} />
+        <img className='plantPicture' alt={name} src={'/api/images/' + image} />
       </div>
       <div className="proName">{name}</div>
     </div>

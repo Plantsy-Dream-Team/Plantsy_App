@@ -1,13 +1,15 @@
 .modal{
     visibility:hidden;
     background-color: rgb(119, 150, 48);
-    box-shadow:1px 1px 7px 0.5px rgb(82, 81, 81);
-    position: fixed;
+    box-shadow:0px 0px 10px 0.8px rgb(1, 253, 1);
+    position: absolute;
+    top:100px;
     z-index: 2;
     overflow: auto;
     border-radius: 20px;
     width:70%;
-    height:600px;
+    min-height: 600px;
+    min-height: 600px;
     margin-top: 45px;
     margin-left:20px;
     left:15%;
@@ -18,10 +20,10 @@
 }
 
 .upperBox{
-    width:70%;
+    width:100%;
     height:250px;
     background-image: linear-gradient(to bottom right, rgb(156, 201, 85), rgb(73, 100, 22));
-    position: fixed;
+    position: absolute;
     z-index: 0;
 }
 
@@ -59,6 +61,30 @@
     color:white;
     font-size: 24px;
     float:left;
+}
+
+.dropdown {
+    color: black;
+    position: absolute;
+    top: 2px;
+    right: 40px;
+    font-size: 20px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left: -30px;
+    background-color: #f9f9f9;
+    -webkit-box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    border-radius: 6px;
+    z-index: 99;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 
 .textBox{
