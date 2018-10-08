@@ -24,10 +24,10 @@ class LoginPage extends Component {
     handleSubmit(evt) {
         evt.preventDefault();
 
-        if(this.state.username && this.state.password) {
+        if (this.state.username && this.state.password) {
             return API.User.userValidation(this.state.username, this.state.password)
                 .then(result => {
-                    if(result.data === null) {
+                    if (result.data === null) {
                         this.setState({
                             error: 'Invalid Username and Password!'
                         })
@@ -65,9 +65,9 @@ class LoginPage extends Component {
         return (
             <div>
                 <div className='whiteBackground'>
-                <div className = "jumbo">
-                <div class = "title">Plantsy  </div>
-                </div>
+                    <div className="jumbo">
+                        <div class="title">Plantsy  </div>
+                    </div>
                     <div className="Login">
                         <form>
                             {
@@ -78,15 +78,15 @@ class LoginPage extends Component {
                                 </h3>
                             }
                             <label >User Name  </label>
-                            <input className = "label" type="text" onChange={this.handleUserChange} />
+                            <input className="label" type="text" onChange={this.handleUserChange} />
                             <label>Password  </label>
-                            <input className = "label" type="password" onChange={this.handlePassChange} />
-                    
-                            <button className = "subBtn" onClick={this.handleSubmit}>Login</button>
+                            <input className="label" type="password" onChange={this.handlePassChange} />
+
+                            <button className="subBtn" onClick={this.handleSubmit}>Login</button>
                         </form>
                     </div>
-                    <div className = "newUserText">
-                            Don't have an Account?
+                    <div className="newUserText">
+                        Don't have an Account?
                             <button className="newUserBtn" onClick={this.props.userCreation}>Create an Account</button>
                     </div>
                 </div>
