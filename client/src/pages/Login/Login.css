@@ -1,0 +1,97 @@
+body {
+    background-color: rgb(119, 150, 48);
+    margin:0px;
+}
+
+.input {
+    font-size: 14px;
+    padding: 4px;
+    width: 100%;
+    margin: auto;
+    border-radius: 6px;
+}
+
+.jumbo{
+    background-color:rgb(156, 201, 85);
+    background-image: linear-gradient(to bottom right, rgb(156, 201, 85), rgb(73, 100, 22));
+    width:100%;
+    height:250px;
+    margin-bottom: 20px;
+}
+
+.title{
+    float:right;
+    text-align: center;
+    vertical-align: center;
+    font-size: 70px;
+    color: white;
+    line-height: 250px;
+    font-family: 'Special Elite', cursive;
+    margin-left: 38%;
+    position:absolute;
+}
+
+form{
+    width:75%;
+    height:auto;
+    margin:0px auto 0px auto;
+    padding:20px;
+}
+
+label{
+    color:white;
+    font-size:25px;
+    margin-left:5px;
+}
+
+.label{
+    background-color: rgb(89, 122, 28);
+    width:200px;
+    height: 15px;
+    margin: 0px 20px 0px auto;
+    color:white;
+    border:none;
+    padding:5px;
+    font-size: 14px;
+    font-family: sans-serif;
+}
+
+.subBtn{
+  
+    color:white;
+    background-color: rgb(89, 122, 28);
+    box-shadow:1px 1px 5px 0.8px rgb(95, 94, 94);
+    width:100px;
+    height:25px;
+    border:none;
+    font-size: 20px;
+    border-radius: 15px;
+}
+
+.subBtn:hover{
+    background-color:rgb(149, 194, 90);
+}
+
+.newUserBtn{
+    margin: 20px;
+    color: white;
+    background-color: rgb(89, 122, 28);
+    -webkit-box-shadow: 1px 1px 5px 0.8px rgb(95, 94, 94);
+    box-shadow: 1px 1px 5px 0.8px rgb(95, 94, 94);
+    width: 180px;
+    height: 30px;
+    border: none;
+    font-size: 16px;
+    border-radius: 15px;
+}
+
+.newUserBtn:hover{
+    background-color:rgb(149, 194, 90);
+}
+
+.newUserText{
+    text-align: center;
+    color:white;
+    font-size: 20px;
+    padding:20px;
+}
